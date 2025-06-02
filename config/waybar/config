@@ -1,0 +1,90 @@
+{
+    "layer": "top",
+    "modules-left": ["custom/launcher", "hyprland/workspaces", "date" ],
+    "modules-center": ["temperature", "cpu", "clock", "memory", "pulseaudio"],
+    "modules-right": ["network", "battery", "disk", "custom/power"],
+    
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate"
+    },
+
+
+
+    "network": {
+        "format-wifi" : "wifi {bandwidthDownBits}",
+        "format-ethernet": "enth {bandwidthDownBits}",
+        "format-disconnected" : "no network",
+        "interval": 5,
+        "tooltip": false
+    },
+
+"temperature": {
+	"sensor": "k10temp-pci-00c3",
+	"format": "{temperatureC}°C"   
+	},
+
+ "disk": {
+    "format": "{used}/{total}",
+    "on-click": "thunar",
+    "path": "/",
+    "interval": 30
+  //   "on-click": ["thunar"],
+    },
+
+    "battery": {
+    "format": "{capacity}% {icon}",
+    "format-charging": "⚡ {capacity}%",
+    "format-plugged": "🔌 {capacity}%",
+    "format-alt": "{time} ({capacity}%)",
+    "interval": 30,
+    "states": {
+        "good": 80,
+        "warning": 30,
+        "critical": 15
+    },
+    "format-icons": ["", "", "", "", ""]
+},
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰖁 Muted",
+        "scroll-step": 5,
+        "on-click": "pamixer -t",
+        "format-icons": {
+            "default": ["󰖁", "󰕾", "󰕿", "󰖀"]
+        }
+    },
+
+    "clock": {
+	"interval": 60,
+	"tooltip": true,
+	"format": "{:%H:%M}",
+	"tooltip-format": "{:%Y-%m-%d}",
+    },
+
+    "cpu": {
+        "interval": 5,
+        "format": "󰻠 {usage}%",
+        "max-length": 10
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": "󰍛 {percentage}%",
+        "max-length": 10
+    },
+
+    "custom/launcher": {
+        "format": " ",
+        "on-click": "wofi --show drun",
+        "on-click-right": "killall wofi",
+        "tooltip": false
+    },
+
+    "custom/power": {
+        "format": " ",
+        "on-click": "poweroff",
+        "tooltip": false
+    },
+}

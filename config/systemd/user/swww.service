@@ -1,0 +1,7 @@
+[Unit]
+Description=Random wallpaper
+Wants=swww.timer
+
+[Service]
+Type=simple
+ExecStart=./swww/swww.sh

@@ -1,8 +1,8 @@
 {
     "layer": "top",
-    "modules-left": ["custom/launcher", "hyprland/workspaces", "date" ],
+    "modules-left": ["custom/launcher", "hyprland/workspaces", "custom/window-title" ],
     "modules-center": ["temperature", "cpu", "clock", "memory", "pulseaudio"],
-    "modules-right": ["network", "battery", "disk", "custom/power"],
+    "modules-right": ["custom/firefox", "custom/steam", "custom/discord", "custom/telegram-desktop", "custom/alacritty","network", "battery", "disk", "custom/power"],
     
 "hyprland/workspaces": {
     "format": "{icon}",
@@ -21,15 +21,52 @@
     }
     },
 
+"custom/alacritty": {
+    "format": "  ",  
+    "tooltip": false,
+    "on-click": "alacritty",
+    "interval": 3600
+},
+"custom/firefox": {
+    "format": "  ",  
+    "tooltip": false,
+    "on-click": "firefox",
+    "interval": 3600
+},
+"custom/steam": {
+    "format": " 󰓓 ",
+    "tooltip": false,
+    "on-click": "steam",
+    "interval": 3600
+},
+"custom/discord": {
+    "format": "  ",
+    "tooltip": false,
+    "on-click": "discord",
+    "interval": 3600
+},
+"custom/telegram-desktop": {
+    "format": "  ",
+    "tooltip": false,
+    "on-click": "telegram-desktop",
+    "interval": 3600
+},
+ 
 
+   "custom/window-title": {
+    "format": "{}",
+    "exec": "hyprctl activewindow -j | jq -r '.title'",
+    "interval": 1
+ },
 
 
     "network": {
         "format-wifi" : "wifi {bandwidthDownBits}",
         "format-ethernet": "enth {bandwidthDownBits}",
-        "format-disconnected" : "no network",
+        "format-disconnected" : "󰣵",
         "interval": 5,
-        "tooltip": false
+        "tooltip": false,
+	"on-click": "hyprctl dispatch exec \"[float; size 500 100; move 1400 37] alacritty -e ping google.com\""
     },
 
 "temperature": {
@@ -39,7 +76,7 @@
 
  "disk": {
     "format": "{used}/{total}",
-    "on-click": "thunar",
+    "on-click": "hyprctl dispatch exec \"[float; size 700 500; move 1210 35] thunar\"",
     "path": "/",
     "interval": 30
   //   "on-click": ["thunar"],
@@ -75,12 +112,14 @@
 	"tooltip": true,
 	"format": "{:%H:%M}",
 	"tooltip-format": "{:%Y-%m-%d}",
+	"on-click": "hyprctl dispatch exec \"[float; move 860 37] gsimplecal\""
     },
 
     "cpu": {
         "interval": 5,
         "format": "󰻠 {usage}%",
-        "max-length": 10
+        "max-length": 10,
+	"on-click": "hyprctl dispatch exec \"[float; size 400 300; move 700 37] alacritty -e htop\""
     },
 
     "memory": {
@@ -98,7 +137,7 @@
 
     "custom/power": {
         "format": " ",
-        "on-click": "poweroff",
+        "on-click": "hyprlock",
         "tooltip": false
     },
 }

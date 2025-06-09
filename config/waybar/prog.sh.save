@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Показываем меню
+chosen=$(printf "alacritty\nfirefox\nsteam\ndiscord\ntelegram-desktop" | wofi --dmenu -p "Запустить:")
+
+# Проверяем, что пользователь выбрал что-то
+[ -z "$chosen" ] && exit
+
+# Запускаем выбранное
+case "$chosen" in
+    alacritty)          setsid alacritty & ;;
+    firefox)            setsid firefox & ;;
+    steam)              setsid steam & ;;
+    discord)            setsid discord & ;;
+    telegram-desktop)   setsid telegram-desktop & ;;
+esac

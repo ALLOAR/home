@@ -18,3 +18,5 @@ Eсли нужно что бы одна ветка стала в точност�
 
 Что бы создать кастомное iso nixos
 nix run github:nix-community/nixos-generators -- -f iso -c ./iso2-1.nix
+
+systemctl hibernate

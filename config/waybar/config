@@ -2,17 +2,17 @@
     "layer": "top",
     "modules-left": ["custom/launcher", "hyprland/workspaces", "custom/window-title" ],
     "modules-center": ["temperature", "cpu", "clock", "memory", "pulseaudio"],
-    "modules-right": ["custom/firefox", "custom/steam", "custom/discord", "custom/telegram-desktop", "custom/alacritty","network", "battery", "disk", "custom/power"],
+    "modules-right": ["custom/youtube-music", "custom/firefox", "custom/steam", "custom/discord", "custom/telegram-desktop", "custom/alacritty", "network", "battery", "disk", "custom/power"],
     
 "hyprland/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
     "format-icons": {
-        "1": "●",
-        "2": "●",
-        "3": "●",
-        "4": "●",
-        "5": "●",
+        "1": "  ",
+        "2": " 󰋞 ",
+        "3": "  ",
+        "4": "  ",
+        "5": " 󰓓 ",
         "6": "●",
         "7": "●",
         "8": "●",
@@ -20,6 +20,7 @@
         "10": "●"
     }
     },
+
 
 "custom/alacritty": {
     "format": "  ",  
@@ -51,18 +52,24 @@
     "on-click": "telegram-desktop",
     "interval": 3600
 },
- 
+"custom/youtube-music": {
+    "format": "  ",
+    "tooltip": false,
+    "on-click": "youtube-music",
+    "interval": 3600
+},
 
    "custom/window-title": {
     "format": "{}",
     "exec": "hyprctl activewindow -j | jq -r '.title'",
-    "interval": 1
+    "interval": 1,
+    "max-length": 50
  },
 
 
     "network": {
-        "format-wifi" : "wifi {bandwidthDownBits}",
-        "format-ethernet": "enth {bandwidthDownBits}",
+        "format-wifi" : "  {bandwidthDownBits}",
+        "format-ethernet": "󰈁 {bandwidthDownBits}",
         "format-disconnected" : "󰣵",
         "interval": 5,
         "tooltip": false,
@@ -101,9 +108,18 @@
         "format-muted": "󰖁 Muted",
         "scroll-step": 5,
         "on-click": "pamixer -t",
-	"on-click-right": "pavucontrol", 
+	"on-click-right": "hyprctl dispatch exec \"[float; size 600 300; move 800 50] pavucontrol\"", 
         "format-icons": {
-            "default": ["󰖁", "󰕾", "󰕿", "󰖀"]
+		"alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+		"alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+		"headphones": "",
+		"handsfree": "",
+		"headset": "",
+		"phone": "",
+		"phone-muted": "",
+		"portable": "",
+		"car": "",
+		"default": ["", ""]
         }
     },
 

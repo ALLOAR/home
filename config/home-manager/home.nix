@@ -7,7 +7,6 @@
 	
 	imports = [
 	./home-configs/zsh.nix
-	./home-configs/waybar.nix
 	./home-configs/alacritty.nix
 ];
 }

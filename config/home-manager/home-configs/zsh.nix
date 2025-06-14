@@ -2,10 +2,14 @@
 	 
 	programs.zsh = {
                 enable = true;
+		initExtra = ''
+    		# Тут пишешь как в .zshrc
+    		fastfetch
+  		'';
                 shellAliases = {
                         rebuild = "sudo nixos-rebuild switch";
                         rebuildh = "home-manager switch";
-                        prog = "nano /etc/nixos/configurations/programs.nix";
+                        prog = "sudo nano /etc/nixos/configurations/programs.nix";
                         c = "sudo nano /etc/nixos/configuration.nix";
 			cdc = "cd /etc/nixos/";
 			cdh = "cd /home/alloar/.config/home-manager/";
@@ -13,6 +17,9 @@
 			deac = "deactivate";
 			p = "python";
 			p-start = "python3 -m venv venv";
+			hyp = "nano ~/.config/hypr/hyprland.conf";
+		# ВАЖНО --- надо перезапустить zsh после применения конфигурации, можно просто перезайти а можно
+		# exec zsh	
 		};
                 oh-my-zsh = {
                         enable = true;

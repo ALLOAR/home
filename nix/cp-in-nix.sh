@@ -1,4 +1,4 @@
 #!bin/bash
 
-cd ~/home/nix/
-sudo cp -r * /etc/nixos
+cp ./configuration.nix /etc/nixos/
+cp -r ./configurations /etc/nixos

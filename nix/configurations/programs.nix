@@ -1,156 +1,168 @@
 { pkgs, ... }: {
   nixpkgs.config = {
     allowUnfree = true;
-    permittedInsecurePackages = ["python-2.7.18.8" "electron-25.9.0"];
+    permittedInsecurePackages = [
+      "python-2.7.18.8"
+      "electron-25.9.0"
+    ];
   };
 
   environment.systemPackages = with pkgs; [
-    # Desktop apps
-	libreoffice
-	hyprpicker 
-	hyprshot picom 
-	picom-pijulius 
-	xfce.thunar libnotify 
-	kitty mate.pluma 
-	pkgs.xorg.libX11 
-	steam-run libinput viber 
-	pciutils 
-	nvtopPackages.full 
-	python2 amdvlk audacity 
-	php chromium 
-	telegram-desktop 
-	alacritty obs-studio 
-	rofi wofi mpv kdenlive 
-	discord gparted obsidian 
-	zoom-us pcmanfm-qt
-	#polymc
-	w3m
-	firefox
-	spotify
-	youtube-music
-	btop
-	htop
-	acpi			
-	# Hyprland stuff
-	hyprland
-	hyprpaper
-	hyprlock
-	dolphin
-	steam
-	oh-my-zsh
-	zsh-powerlevel10k		
-	virtualbox
-  	glxinfo
-	clinfo
-  	libva		
-	shotcut
-	#drirevs
-	vulkan-headers
-	vulkan-loader
-	vulkan-validation-layers
-	nvidia-vaapi-driver
-	vulkan-tools
-	usbutils
-	udisks
-	gvfs
-	udiskie
-    # Coding stuff
-    nginx
-    git
-    vscode
-    gnumake
-    gcc
-    nodejs
-    #python
-    #(python3.withPackages (ps: with ps; [ requests ]))
-    #python39Full
-    vim
-    python314
-    # CLI utils
-    neofetch
+
+    # --- Base Applications ---
+    foot
+    chrome-export
+    firefox
+    unstable.discord
+    spotify
+    steam
+    whatsapp-for-linux
+    telegram-desktop
+    obsidian
+    zoom-us
+    youtube-music
+    home-manager
+    # --- Core Tools ---
+    btop
+    htop
+    nvtopPackages.nvidia
+    pciutils
     file
     tree
     wget
-    wget
-    fastfetch
-    htop
-    nix-index
     unzip
+    zip
+    neofetch
+    fastfetch
     scrot
     ffmpeg
-    light
-    lux
     mediainfo
-    ranger
-    zram-generator
-    cava
-    zip
+    acpi
+    glxinfo
+    clinfo
+    openssl
+    unzip
     ntfs3g
-    yt-dlp
     brightnessctl
     swww
-    openssl
+    zram-generator
     lazygit
-    bluez
-    bluez-tools
+    nix-index
+    imagemagick
+    qemu
+    virt-manager
+    virt-viewer
 
-    # GUI utils
-    feh
-    imv
-    dmenu
-    screenkey
-    mako
-    gromit-mpx
+    # --- Terminals & Shells ---
+    kitty
+    alacritty
+    wezterm
+    oh-my-zsh
+    zsh
+    zsh-powerlevel10k
+    fish
+    vim
 
-    # Xorg stuff
-    #xterm
-    #xclip
-    #xorg.xbacklight
+    # --- Programming & Dev Tools ---
+    gcc
+    gnumake
+    git
+    nodejs
+    nginx
+    vscode
+    php
+    python2
+    python314
+    # python3.withPackages (ps: with ps; [ requests ])
+    # python39Full
 
-    # Wayland stuff
+    # --- File Managers ---
+    xfce.thunar
+    #dolphin
+    ranger
+    pcmanfm-qt
+
+    # --- Hyprland & Wayland ---
+    swaykbdd
+    jq
+    hyprland
+    hyprpaper
+    hyprlock
+    wofi
     xwayland
     wl-clipboard
     cliphist
     wayland
-    # WMs and stuff
-    herbstluftwm
-    hyprland
-    seatd
+    mako
     xdg-desktop-portal-hyprland
-    polybar
-    waybar
+    seatd
+    swww
+    hyprshot
+    gsimplecal
 
-    # Sound
-    pipewire
-    pulseaudio
-    pamixer
-    pavucontrol
-    blueman
-    # GPU stuff 
-    amdvlk
-    #rocm-opencl-icd
-    glaxnimate
+    # --- Xorg / DE Support ---
+    picom
+    xorg.libX11
+    dmenu
+    sxhkd
 
-    # Screenshotting
+    # --- Screenshotting & Screen Tools ---
     grim
     grimblast
     slurp
     flameshot
     swappy
+    screenkey
+    gromit-mpx
 
-    # Other
-    home-manager
+    # --- Media ---
+    mpv
+    #kdenlive
+    audacity
+    shotcut
+    glaxnimate
+
+    # --- System Management ---
+    udisks
+    udiskie
+    gvfs
+    usbutils
+    virtualbox
     spice-vdagent
-    libsForQt5.qtstyleplugin-kvantum
-    libsForQt5.qt5ct
-    papirus-nord
-    sxhkd
-    wezterm
-    fish
-    dunst
-    zsh
     accountsservice
     gdm-settings
+
+    # --- Notifications ---
+    libnotify
+    dunst
+
+    # --- Sound ---
+    pipewire
+    pulseaudio
+    pamixer
+    pavucontrol
+    blueman
+    bluez
+    bluez-tools
+
+    # --- Window Managers & UI ---
+    herbstluftwm
+    polybar
+    waybar
+    rofi
+    gum
+
+    # --- Theming & Fonts ---
+    libsForQt5.qt5ct
+    libsForQt5.qtstyleplugin-kvantum
+    papirus-nord
+    # --- Drivers ---
+    pkgs.vulkan-tools
+    pkgs.vulkan-loader
+    pkgs.vulkan-validation-layers
+    pkgs.nvidia-vaapi-driver
+    # --- Fonts (handled separately) ---
+    # See fonts.packages below
   ];
 
   fonts.packages = with pkgs; [
@@ -161,6 +173,7 @@
     font-awesome
     powerline-fonts
     powerline-symbols
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    pkgs.nerd-fonts._0xproto
+    pkgs.nerd-fonts.droid-sans-mono    
   ];
 }

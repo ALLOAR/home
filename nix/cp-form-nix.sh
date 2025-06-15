@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cp -r /etc/nixos/* ~/home/nix/
+cp -r /etc/nixos/* ~/nixos/
 # -r означает рекурсивно, то есть скопировать все директории и каталоги 
-rm -rf ~/home/nix/configurations/hardware-configurations.nix
+rm -rf ~/nixos/configurations/hardware-configurations.nix

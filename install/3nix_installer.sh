@@ -1,9 +1,10 @@
 echo -e "\e[32mCloning main git\e[0m"
+read -p "what system you use (nix, arch) === " choiсe
 git clone --branch main --single-branch https://github.com/ALLOAR/home > /dev/null 2>&1
 cd home
 mkdir -p /etc/nixos/configurations
 mkdir -p ~/.config
-case "$choise" in
+case "$choiсe" in
   nix)
           cd nix && bash cp-in-nix.sh
 	  cd ~/home/config

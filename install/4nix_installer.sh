@@ -10,6 +10,7 @@ case "$choiсe" in
 	  cd ~/home/config
 	  cp -r home-manager ~/.config/
           cd
+	  home-manager switch
           ;;
   arch)
           echo -e "\e[32m Cloning home git\e[0m"

@@ -10,10 +10,12 @@
   environment.systemPackages = with pkgs; [
 
     # --- Base Applications ---
+    qbittorrent
+    qemu
     foot
     chrome-export
     firefox
-    unstable.discord
+    discord
     spotify
     steam
     whatsapp-for-linux
@@ -64,6 +66,7 @@
     vim
 
     # --- Programming & Dev Tools ---
+    neovim
     gcc
     gnumake
     git
@@ -83,6 +86,7 @@
     pcmanfm-qt
 
     # --- Hyprland & Wayland ---
+    lxappearance
     swaykbdd
     jq
     hyprland
@@ -153,9 +157,11 @@
     gum
 
     # --- Theming & Fonts ---
+    catppuccin
     libsForQt5.qt5ct
     libsForQt5.qtstyleplugin-kvantum
     papirus-nord
+    omni-gtk-theme
     # --- Drivers ---
     pkgs.vulkan-tools
     pkgs.vulkan-loader

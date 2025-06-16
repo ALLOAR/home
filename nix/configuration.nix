@@ -80,11 +80,4 @@
       experimental-features = nix-command flakes
     '';
   };
-  nixpkgs.overlays = [
-    (self: super: {
-      unstable = import <nixpkgs-unstable> {
-        config.allowUnfree = true;
-      };
-    })
-  ];
 }

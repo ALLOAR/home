@@ -35,8 +35,8 @@ echo "[4/5] Копирование конфигов..."
 cd
 sudo nixos-generate-config --root /mnt
 mkdir -p /mnt/etc/nixos/configurations
-git clone --branch main --single-branch https://github.com/ALLOAR/NixOS
-cd NixOS
+git clone --branch main --single-branch https://github.com/ALLOAR/home
+cd home/nix/
 cp -r * /mnt/etc/nixos/
 cp /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/configurations/
 cd

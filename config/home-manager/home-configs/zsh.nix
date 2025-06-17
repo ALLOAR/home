@@ -17,7 +17,7 @@
 			deac = "deactivate";
 			p = "python";
 			p-start = "python3 -m venv venv";
-			hyp = "nano ~/.config/hypr/hyprland.conf";
+			hyp = "nano ~/.config/home-manager/config/hypr/hyprland.conf";
 		# ВАЖНО --- надо перезапустить zsh после применения конфигурации, можно просто перезайти а можно
 		# exec zsh	
 		};

@@ -8,6 +8,8 @@
 	imports = [
 	./home-configs/zsh.nix
 	./home-configs/alacritty.nix
+	./home-configs/git.nix
+	./bundle.nix
 ];
 }
 

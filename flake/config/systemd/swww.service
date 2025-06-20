@@ -4,4 +4,4 @@ Wants=swww.timer
 
 [Service]
 Type=simple
-ExecStart=/run/current-system/sw/bin/bash /home/%u/.config/home-manager/config/systemd/bash/swww.sh
+ExecStart=/run/current-system/sw/bin/bash /home/%u/nix/config/systemd/bash/swww.sh

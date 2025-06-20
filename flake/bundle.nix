@@ -1,19 +1,19 @@
 { config, pkgs, ... }: {
 # --- Waybar --- #	
-	home.file.".config/waybar/config" = {
-  	source = ./config/waybar/config;
-	};
-	home.file.".config/waybar/style.css" = {
-  	source = ./config/waybar/style.css;
-	};
+#	home.file.".config/waybar/config" = {
+#  	source = ./config/waybar/config;
+#	};
+#	home.file.".config/waybar/style.css" = {
+#  	source = ./config/waybar/style.css;
+#	};
 # --- Wofi --- #
-	home.file.".config/wofi/config" = {
-	source = ./config/wofi/config;
-	};
-
-	home.file.".config/wofi/style.css" = {
-  	source = ./config/wofi/style.css;
-	};
+#	home.file.".config/wofi/config" = {
+#	source = ./config/wofi/config;
+#	};
+#
+#	home.file.".config/wofi/style.css" = {
+#  	source = ./config/wofi/style.css;
+#	};
 # --- hyprlnad hyprlock hyprshot --- #
 #	home.file.".config/hypr/hyprland.conf" = {
 #        source = ./config/hypr/hyprland.conf;

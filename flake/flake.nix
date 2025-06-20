@@ -1,22 +1,37 @@
 {
-  description = "Пример Python-проекта с flake";
+  description = "My system conf";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-      in {
-        devShell = pkgs.mkShell {
-          name = "python-dev-shell";
-          buildInputs = [ pkgs.python3 pkgs.python3Packages.pip ];
-          shellHook = ''
-            echo "Добро пожаловать в Python dev shell!"
-          '';
-        };
-      });
+  outputs = { nixpkgs, home-manager, ... }: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    nixosConfigurations = {
+      nixos = nixpkgs.lib.nixosSystem {
+        system = system;
+        modules = [ ./configuration.nix ];
+      };
+
+      laptop = nixpkgs.lib.nixosSystem {
+        system = system;
+        modules = [ ./configurations/laptop.nix ];
+      };
+    };
+
+    homeConfigurations = {
+      alloar = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgs;
+        modules = [ ./home.nix ];
+      };
+    };
+  };
 }
+

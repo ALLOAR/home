@@ -1,0 +1,8 @@
+[Unit]
+Description=Run Git Sync for obsidian vault
+
+[Timer]
+OnCalendar=*:0/15
+
+[Install]
+WantedBy=timers.target

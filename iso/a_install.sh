@@ -34,5 +34,6 @@ pacstrap -K /mnt base linux linux-firmware nano networkmanager
 genfstab -U /mnt >> /mnt/etc/fstab
 
 curl https://raw.githubusercontent.com/ALLOAR/home/refs/heads/main/iso/2a_install.sh -o 2install.sh
+chmod +x 2install.sh
 cp 2install.sh /mnt/root
-arch-chroot /mnt /root/2install.sh
+arch-chroot /mnt ё/root/2install.sh

@@ -29,13 +29,15 @@ echo "[3.5/5] Монтирование разделов..."
 mount ${DISK}${p}3 /mnt
 mkdir -p /mnt/boot
 mount ${DISK}${p}1 /mnt/boot
-echo "[4/5] Копирование конфигов..."
+
 pacstrap -K /mnt base linux linux-firmware nano networkmanager
 genfstab -U /mnt >> /mnt/etc/fstab
+
+
 arch-chroot /mnt
-pacman -S grub efibootmgr sudo
+echo "arch" > /etc/hostname
+pacman -S grub efibootmgr
 grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot
 grub-mkconfig -o /boot/grub/grub.cfg
-echo "passwd"
-echo "nano /etc/locale.gen locale-gen nano /etc/locale.conf // type \"LANG=en_US.UTF-8"
+echo "Dont forgot locales"
 passwd

@@ -8,4 +8,5 @@ echo "root:root" | chpasswd
 pacman -S --noconfirm sudo
 echo " system installed reboot after 3 sec "
 sleep 3
+exit
 reboot

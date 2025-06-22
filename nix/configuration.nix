@@ -29,12 +29,21 @@
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "allaor" ];
 #------Ssh--------------------------------------------------------------------------------------------------------------------------------------
+  networking.firewall = {
+    enable = true;                 # Включить фаервол
+    allowedTCPPorts = [ 22 ];   # Открыть порт 2222 для TCP
+    allowedUDPPorts = [];         # Если нужны UDP — можно добавить
+    # Можно дополнительно разрешить доступ с конкретных IP:
+    # extraCommands = ''
+    #   iptables -A INPUT -p tcp -s 1.2.3.4 --dport 2222 -j ACCEPT
+    # '';
+  };
   services.openssh = {
   enable = true;
   settings = {
     PermitRootLogin = "yes";
     PasswordAuthentication = true;
-    Port = 2222;
+    Port = 22;
   };
   };
 #------User-----------------------------------------------------------------------------------------------------------------------------------

@@ -10,6 +10,10 @@
   environment.systemPackages = with pkgs; [
 
     # --- Base Applications ---
+    xwayland
+    gamescope
+    iptables
+    dunst
     qbittorrent
     qemu
     foot

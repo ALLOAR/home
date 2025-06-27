@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 *.iso
 *.qcow2
+=======
+bash
+
+nix/configurations/hardware-configuration.nix
+>>>>>>> e452b171bde9429f85bb5246c2048954b29e1ff6

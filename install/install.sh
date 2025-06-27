@@ -35,5 +35,7 @@ echo "[4/5] Копирование конфигов..."
 cd
 sudo nixos-generate-config --root /mnt
 git clone https://github.com/ALLOAR/home.git
-cp -r ~/home/nix/* /etc/nixos/
+cp -r ~/home/nix/* /mnt/etc/nixos/
+cp /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/configurations/
+cd /mnt/etc/nixos/
 sudo nixos-install --flake ./

@@ -34,14 +34,6 @@ mount ${DISK}${p}1 /mnt/boot
 echo "[4/5] Копирование конфигов..."
 cd
 sudo nixos-generate-config --root /mnt
-mkdir -p /mnt/etc/nixos/configurations
-git clone --branch main --single-branch https://github.com/ALLOAR/home
-cd home/nix/
-cp -r * /mnt/etc/nixos/
-cp /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/configurations/
-cd
-nix-channel --add https://nixos.org/channels/nixos-25.05 nixos nix-channel --update
-sudo nano /mnt/etc/nixos/configuration.nix
-echo "[5/5] Установка..."
-
-
+git clone https://github.com/ALLOAR/home.git
+cp -r ~/home/nix/* /etc/nixos/
+sudo nixos-install --flake ./

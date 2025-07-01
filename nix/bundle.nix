@@ -31,19 +31,6 @@
 	home.file.".config/gtk-3.0/settings.ini" = {
         source = ./config/settings.ini;
         };
-# --- systemd --- #
-	home.file.".config/systemd/user/swww.service" = {
-        source = ./config/systemd/swww.service;
-        };
-        home.file.".config/systemd/user/swww.timer" = {
-        source = ./config/systemd/swww.timer;
-        };
-        home.file.".config/systemd/user/git-sync-obsidian.service" = {
-        source = ./config/systemd/git-sync-obsidian.service;
-        };
-        home.file.".config/systemd/user/git-sync-obsidian.timer" = {
-        source = ./config/systemd/git-sync-obsidian.timer;
-        };
 # --- nvim --- #
 	home.file.".config/nvim/init.vim" = {
         source = ./config/nvim/init.vim;

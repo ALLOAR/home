@@ -1,9 +1,10 @@
 echo -e "\e[32mCloning main git\e[0m"
 cd
 git clone https://github.com/ALLOAR/home.git > /dev/null 2&>1
+cd ~/home
+git remote set-url origin git@github.com:ALLOAR/home.git
 cp -r ~/home/nix ~/
-cp /etc/nixos/hardware-configuration.nix ~/nix/configurations
-cd nix
+cd ~/nix
 home-manager switch --flake .#alloar
 
 if [ -d ~/.ssh ]; then

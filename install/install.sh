@@ -38,3 +38,4 @@ git clone https://github.com/ALLOAR/home.git
 cp -r ~/home/nix/* /mnt/etc/nixos/
 cp /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/configurations/
 sudo nixos-install --root /mnt --flake .#nixos
+

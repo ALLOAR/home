@@ -170,6 +170,7 @@ in
       bind = SUPER, P, exec, pavucontrol
       bind = SUPER, I, exec, hyprctl dispatch togglefloating && hyprctl dispatch resizeactive exact 1740 950 && hyprctl dispatch moveactive exact 90 70
       bind = ALT, TAB, workspace, previous
+      bind = SUPER, U, fullscreen
 
       bindl = , XF86AudioNext, exec, playerctl next
       bindl = , XF86AudioPause, exec, playerctl play-pause

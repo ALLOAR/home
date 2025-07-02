@@ -6,7 +6,7 @@
         layer = "top";
         position = "top";
 
-    modules-left= ["custom/launcher" "hyprland/workspaces" "custom/window-title" ];
+    modules-left= ["custom/launcher" "hyprland/workspaces" "custom/bluetooth" "custom/window-title" ];
     modules-center= ["temperature" "cpu" "clock" "memory" "pulseaudio"];
     modules-right= ["custom/youtube-music" "custom/firefox" "custom/steam" "custom/discord" "custom/telegram-desktop" "custom/alacritty" "network" "battery" "hyprland/language" "disk" "custom/power"];
 
@@ -28,7 +28,7 @@
     on-click= "activate";
     format-icons= {
         "1"= "  ";
-        "2"= " 󰋞 ";
+        "2"= "   ";
         "3"= "  ";
         "4"= "  ";
         "5"= " 󰓓 ";
@@ -40,6 +40,11 @@
     };
     };
 
+"custom/bluetooth" = {
+  exec = "/home/alloar/nix/home-configs/scripts/bluetooth.sh";
+  interval= 30;
+  tooltip= false;
+};
 
 "custom/alacritty"= {
     format= "  ";  
@@ -271,6 +276,13 @@ border-radius: 5px;
     border-top-right-radius: 5px;
     margin-top: 2px;
 
+}
+
+#custom-bluetooth { 
+    background-color: #2A3239;
+    padding: 4px 12px; /* 10px сверху, 20px справа, 30px снизу, 40px слева */
+    margin: 0px 0;
+    margin-top: 2px;
 }
 #battery{
     background-color: #2A3239;

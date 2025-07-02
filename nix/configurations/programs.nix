@@ -10,7 +10,12 @@
   environment.systemPackages = with pkgs; [
 
     # --- Base Applications ---
+    docker_28
+    lsof
+    wineWowPackages.waylandFull
+    arp-scan
     xwayland
+    OVMF
     gamescope
     iptables
     dunst

@@ -2,7 +2,7 @@
 {
   imports =
     [
-#        ./configurations/hardware-configuration.nix
+        ./configurations/hardware-configuration.nix
         ./configurations/programs.nix
         #./configurations/amd.nix
         ./configurations/nvidia.nix

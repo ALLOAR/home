@@ -17,7 +17,7 @@
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = system;
-        modules = [ ./configuration.nix ./configurations/hardware-configuration.nix ];
+        modules = [ ./configuration.nix ];
       };
 
       laptop = nixpkgs.lib.nixosSystem {

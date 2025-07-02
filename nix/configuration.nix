@@ -2,7 +2,8 @@
 {
   imports =
     [
-        ./configurations/hardware-configuration.nix
+#        ./configurations/hardware-configuration.nix
+	 (builtins.path { path = ./configurations/hardware-configuration.nix; name = "hwconfig"; })
         ./configurations/programs.nix
         #./configurations/amd.nix
         ./configurations/nvidia.nix

@@ -2,14 +2,15 @@
 {
   imports =
     [
-#        ./configurations/hardware-configuration.nix
-	 (builtins.path { path = ./configurations/hardware-configuration.nix; name = "hwconfig"; })
+        ./configurations/hardware-configuration.nix
         ./configurations/programs.nix
         #./configurations/amd.nix
         ./configurations/nvidia.nix
         #./configurations/nvidia_prime.nix
     ];
 #------Services---------------------------------------------------------------------------------------------------------------------------------
+  systemd.user.services."pulseaudio".serviceConfig.Nice = -10;
+  systemd.services."bluetooth".serviceConfig.Nice = -10;
   services.xserver.enable = true;
   services.xserver.windowManager.bspwm.enable = true;
   services.xserver.displayManager.gdm.enable = true;
@@ -29,6 +30,7 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "allaor" ];
+  virtualisation.docker.enable = true;
 #------Ssh--------------------------------------------------------------------------------------------------------------------------------------
   networking.firewall = {
     enable = true;                 # Включить фаервол
@@ -52,7 +54,7 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "alloar";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "docker" ];
     packages = with pkgs; [];
   };
 #------Laptop----------------------------------------------------------------------------------------------------------------------------------

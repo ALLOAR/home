@@ -10,5 +10,5 @@ if [[ -n "$battery_line" ]]; then
   percentage=$(echo "$battery_line" | grep -oP '\(\K[0-9]+(?=\))')
   echo "🎧 ${percentage}%"
 else
-  echo "🎧 N/A"
+  echo ""
 fi

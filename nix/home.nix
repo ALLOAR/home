@@ -10,7 +10,7 @@
 	./home-configs/alacritty.nix
 	./home-configs/git.nix
 	./home-configs/hyprland.nix
-	./home-configs/waybar.nix
+	#./home-configs/waybar.nix
 	./home-configs/wofi.nix
 	./bandle.nix
 ];

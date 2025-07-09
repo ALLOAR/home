@@ -22,7 +22,7 @@ in
         "dunst"
         "firefox"
         "steam"
-        "discord"
+#        "discord"
         "telegram-desktop"
         "swww init"
         "systemctl --user start swww"
@@ -168,8 +168,10 @@ in
       bind = SUPER, S, exec, steam
       bind = SUPER, O, exec, obsidian
       bind = SUPER, P, exec, pavucontrol
-      bind = SUPER, I, exec, hyprctl dispatch togglefloating && hyprctl dispatch resizeactive exact 1740 950 && hyprctl dispatch moveactive exact 90ч 70
+      bind = SUPER, I, exec, hyprctl dispatch togglefloating && hyprctl dispatch resizeactive exact 1740 950 && hyprctl dispatch moveactive exact 90 70
       bind = ALT, TAB, workspace, previous
+      bind = SUPER, U, fullscreen
+      bind = SUPER, B, exec, bluetoothctl connect 9C:49:52:96:C8:87
 
       bindl = , XF86AudioNext, exec, playerctl next
       bindl = , XF86AudioPause, exec, playerctl play-pause

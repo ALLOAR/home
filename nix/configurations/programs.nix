@@ -10,6 +10,7 @@
   environment.systemPackages = with pkgs; [
 
     # --- Base Applications ---
+    yad
     docker_28
     lsof
     wineWowPackages.waylandFull

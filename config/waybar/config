@@ -1,8 +1,8 @@
 {
     "layer": "top",
-    "modules-left": ["custom/launcher", "hyprland/workspaces", "custom/window-title" ],
+    "modules-left": ["custom/launcher", "hyprland/workspaces", "custom/bluetooth", "custom/window-title" ],
     "modules-center": ["temperature", "cpu", "clock", "memory", "pulseaudio"],
-    "modules-right": ["custom/youtube-music", "custom/firefox", "custom/steam", "custom/discord", "custom/telegram-desktop", "custom/alacritty", "network", "battery", "disk", "custom/power"],
+    "modules-right": ["custom/youtube-music", "custom/firefox", "custom/steam", "custom/discord", "custom/telegram-desktop", "custom/alacritty", "network", "battery", "hyprland/language", "disk", "custom/power"],
     
 "hyprland/workspaces": {
     "format": "{icon}",
@@ -21,6 +21,18 @@
     }
     },
 
+"hyprland/language": {
+    "format-en": "US",
+    "format-ru": "RU",
+    "min-length": 5,
+    "tooltip": false
+},
+
+"custom/bluetooth": {
+  "exec": "/home/alloar/.config/waybar/scripts/bluetooth.sh",
+  "interval": 30,
+  "tooltip": false
+},
 
 "custom/alacritty": {
     "format": "  ",  

@@ -4,10 +4,10 @@
 chosen=$(echo -e "alacritty\nfirefox\nsteam\ndiscord\ntelegram-desktop" | wofi --dmenu -p "Запустить:")
 
 case "$chosen" in
-    alacritty)
-    firefox)
-    steam)
-    discord)
-    telegram-desktop}
+    alacritty)          alacritty & ;;
+    firefox)            firefox & ;;
+    steam)              steam & ;;
+    discord)            discord & ;;
+    telegram-desktop)   telegram-desktop & ;;
     *) ;;
 esac

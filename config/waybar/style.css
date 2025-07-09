@@ -17,13 +17,24 @@ window#waybar {
     margin-left: 2px;
     padding: 0 4px;    
 }
-#custom-firefox, #custom-steam, #custom-discord, #custom-telegram-desktop, #custom-alacritty, #custom-youtube-music, #custom-keyboard {
+#custom-bluetooth {
 	background-color: #2A3239;
 	margin-top: 2px;
+	font-size: 15px;
+	border-radius: 5px;
+}
+#language {
+	background-color: #2A3239;
+        font-size: 17px;
+	margin-top: 2px;
+}
+#custom-firefox, #custom-steam, #custom-discord, #custom-telegram-desktop, #custom-alacritty, #custom-youtube-music, #custom-keyboard {
+	background-color: #2A3239;
 	margin-right: 4px;
 	margin-left: 4px;
 	border-radius: 5px;
 	font-size: 17px;
+	margin-top: 2px;
 }
 
 #custom-launcher {

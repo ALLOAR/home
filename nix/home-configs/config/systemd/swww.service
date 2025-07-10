@@ -1,7 +1,0 @@
-[Unit]
-Description=Random wallpaper
-Wants=swww.timer
-
-[Service]
-Type=simple
-ExecStart=/run/current-system/sw/bin/bash /home/%u/nix/config/systemd/bash/swww.sh

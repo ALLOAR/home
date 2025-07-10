@@ -1,7 +1,0 @@
-[Unit]
-Description=Sync Obsidian Vault with github
-Wants=git-sync-obsidian.timer
-
-[Service]
-Type=simple
-ExecStart=./git/git.sh

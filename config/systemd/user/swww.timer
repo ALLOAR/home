@@ -1,8 +1,0 @@
-[Unit]
-Description=Run swww wallpaper
-
-[Timer]
-OnCalendar=*:0/1
-
-[Install]
-WantedBy=swww.target

@@ -39,7 +39,7 @@
 
     Service = {
       Type = "simple";
-      #ExecStart = "/home/alloar/nix/home-configs/scripts/swww.sh";
+      ExecStart = "/home/alloar/nix/home-configs/scripts/swww.sh";
     };
 
     Install = {
@@ -47,7 +47,7 @@
     };
   };
 
-  systemd.user.timers.swww = {
+  systemd.user.timers.git = {
     Unit = {
       Description = "Run git auto-commit";
     };

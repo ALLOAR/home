@@ -10,8 +10,6 @@
   environment.systemPackages = with pkgs; [
 
     # --- Base Applications ---
-    swayosd
-    avizo
     yad
     docker_28
     lsof

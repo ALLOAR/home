@@ -56,6 +56,7 @@
     description = "alloar";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "docker" ];
     packages = with pkgs; [];
+    password = "$6$KwHp1/HNKeLSz3PJ$HeXPJct8cjrVYhccYSDKBWYQwzxOBdPpvpRk8lmQ0QgXRMIwsgEeiSRQWQ4oQZRlpBc7gOnCTZExqpH/.3Zn3.";
   };
 #------Laptop----------------------------------------------------------------------------------------------------------------------------------
   #services.logind.extraConfig = ''

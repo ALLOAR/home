@@ -17,9 +17,9 @@ settings = {
 	"opacity 0.9 0.9, class:^(.*steam.*)$"
 
 	# TELEGRAM
-	"float, class:^org\\.telegram\\.desktop$"
-	"move 106 90, class:^org\\.telegram\\.desktop$"
-	"size 800 900, class:^(.*org.telegram.desktop.*)$"
+	#"float, class:^org\\.telegram\\.desktop$"
+	#"move 106 90, class:^org\\.telegram\\.desktop$"
+	#"size 800 900, class:^(.*org.telegram.desktop.*)$"
 	"opacity 0.94 0.94, class:^(.*org.telegram.desktop.*)$"
 
 	# DISCORD

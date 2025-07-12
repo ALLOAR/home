@@ -10,6 +10,7 @@
   environment.systemPackages = with pkgs; [
 
     # --- Base Applications ---
+    wireplumber
     yad
     docker_28
     lsof

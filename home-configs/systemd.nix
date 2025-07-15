@@ -60,4 +60,34 @@
       WantedBy = [ "timers.target" ];
     };
   };    
+#------battery---------------------------------------------------------------------
+  systemd.user.services.battery = {
+    Unit = {
+      Description = "checking battery and give advice";
+      Wants = [ "battery.timer" ];
+    };
+
+    Service = {
+      Type = "simple";
+      ExecStart = "/home/alloar/nix/home-configs/scripts/battery.sh";
+    };
+
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
+
+  systemd.user.timers.battery = {
+    Unit = {
+      Description = "Run checking battery and give advice";
+    };
+
+    Timer = {
+      OnCalendar = "*:0/1";
+    };
+
+    Install = {
+      WantedBy = [ "timers.target" ];
+    };
+  };
 }

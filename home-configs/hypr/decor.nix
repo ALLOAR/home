@@ -6,7 +6,7 @@
 		general = {
 			gaps_in = 3;
 			gaps_out = 10;
-			border_size = 2;
+			#border_size = 2;
 
 			# https://wiki.hyprland.org/Configuring/Variables/#variable-types for info
 			# rgba(ff00ffee)
@@ -14,8 +14,9 @@
 			# Зелёный = 00 = 0
 			# Синий = ff = 255
 			# Прозрачность = ee = 93%
-			col.active_border = "rgba(ff00ffee) rgba(ff8800ee) rgba(ffff00ee) 45deg";
-			col.inactive_border = "rgba(595959aa)";
+
+			#col.active_border = "rgba(ff00ffee) rgba(ff8800ee) rgba(ffff00ee) 45deg";
+			#col.inactive_border = "rgba(595959aa)";
 
 			# Set to true to enable resizing windows by clicking and dragging on borders
 			# Этот параметр управляет поведением изменения размера окна, когда ты тащишь его за границу

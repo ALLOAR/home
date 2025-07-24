@@ -10,6 +10,8 @@
   environment.systemPackages = with pkgs; [
 
     # --- Base Applications ---
+    osu-lazer
+    upower
     wireplumber
     yad
     docker_28

@@ -6,12 +6,12 @@ exec-once = [
 	"hyprpaper"
 	"waybar"
 	"dunst"
-	"firefox"
-	"steam"
 #        "discord"
-	"telegram-desktop"
 	"swww init"
 	"systemctl --user start swww"
+	"sh -c 'hyprctl dispatch workspace 3 && firefox'"
+	"sh -c 'hyprctl dispatch workspace 5 && steam'"
+	"sh -c 'hyprctl dispatch workspace 4 && telegram-desktop'"	
 ];
 };
 }

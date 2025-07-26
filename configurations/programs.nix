@@ -10,6 +10,7 @@
   environment.systemPackages = with pkgs; [
 
     # --- Base Applications ---
+    tor
     osu-lazer
     upower
     wireplumber

@@ -6,9 +6,13 @@
         layer = "top";
         position = "top";
 
-    modules-left= ["custom/launcher" "hyprland/workspaces" "custom/bluetooth" "custom/window-title" ];
-    modules-center= ["temperature" "cpu" "clock" "memory" "pulseaudio"];
-    modules-right= ["custom/youtube-music" "custom/firefox" "custom/steam" "custom/discord" "custom/telegram-desktop" "custom/alacritty" "network" "battery" "hyprland/language" "disk" "custom/power"];
+    #modules-left= ["custom/launcher" "hyprland/workspaces" "custom/bluetooth" "custom/window-title" ];
+    #modules-center= ["temperature" "cpu" "clock" "memory" "pulseaudio"];
+    #modules-right= ["custom/youtube-music" "custom/firefox" "custom/steam" "custom/discord" "custom/telegram-desktop" "custom/alacritty" "network" "battery" "hyprland/language" "disk" "custom/power"];
+
+	modules-left= [ "custon/launcher" "cpu" "pulseaudio" ];
+	modules-center= [ "hyprland/workspaces" ];
+	modules-right = [ "clock" ];
 
 #Нерабочий мусор
 "tray" = {
@@ -112,7 +116,7 @@
     path= "/";
     interval= 30;
     };
-
+   
     battery= {
     format= "{capacity}% {icon}";
     format-charging= "⚡ {capacity}%";

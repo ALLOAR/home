@@ -1,3 +1,16 @@
+let 
+clock = "clock";
+bgm = "background-color: transparent;";	
+#bgm = "background-color: #2A3239;"; 
+# background modules
+bgw = "background-color: rgba(0, 0, 0, 0.6);"; #background all waybar
+color = "";
+font = "font-size: 16px;";
+fontp = "font-size: 16px;"; #font pulseaudio
+fontc = "font-size: 16px;"; #font cpu
+fontw = "font-size: 30px;"; #font workspaces
+fontl = "font-size: 25px;"; #font laucher
+in
 {
   programs.waybar = {
     enable = true;
@@ -10,9 +23,9 @@
     #modules-center= ["temperature" "cpu" "clock" "memory" "pulseaudio"];
     #modules-right= ["custom/youtube-music" "custom/firefox" "custom/steam" "custom/discord" "custom/telegram-desktop" "custom/alacritty" "network" "battery" "hyprland/language" "disk" "custom/power"];
 
-	modules-left= [ "custon/launcher" "cpu" "pulseaudio" ];
+	modules-left= [ "custom/launcher" "cpu" "pulseaudio" ];
 	modules-center= [ "hyprland/workspaces" ];
-	modules-right = [ "clock" ];
+	modules-right = [ "hyprland/language" "clock" ];
 
 #Нерабочий мусор
 "tray" = {
@@ -25,7 +38,7 @@
         format-ru = "RU";
 	      min-length = 5;
 	      tooltip = false;
-    };
+  # };
 
 "hyprland/workspaces"= {
     format= "{icon}";
@@ -33,7 +46,7 @@
     format-icons= {
         "1"= "  ";
         "2"= "   ";
-        "3"= "  ";
+        "3"= " ";
         "4"= "  ";
         "5"= " 󰓓 ";
         "6"= "●";
@@ -154,9 +167,10 @@
     "clock"= {
 	interval= 60;
 	tooltip= true;
-	format= "{:%H:%M}";
+        format = "{:%d.%m.%Y | %H:%M}";
 	tooltip-format= "{:%Y-%m-%d}";
 	on-click= "hyprctl dispatch exec \"[float; move 860 37] gsimplecal\"";
+  
     };
 
     "cpu"= {
@@ -194,11 +208,13 @@ style = ''
     min-height: 0;
 }
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.0);
+    ${bgw} /* Чёрный с прозрачностью */
     color: #ffffff;
 }
+
 #custom-window-title {
-    background-color: #2A3239;;
+    ${bgm};
+    ${font}
     margin: 0px 0;
     border-radius: 5px;
     margin-top: 2px;
@@ -206,12 +222,12 @@ window#waybar {
     padding: 0 4px;    
 }
 #language {
-	background-color: #2A3239;
-        margin-top: 2px;
-        font-size: 17px;
+	${font}
+	${bgm}
 }
 #tray, #custom-firefox, #custom-steam, #custom-discord, #custom-telegram-desktop, #custom-alacritty, #custom-youtube-music, #custom-keyboard {
-	background-color: #2A3239;
+	${font}
+	${bgm}
 	margin-top: 2px;
 	margin-right: 4px;
 	margin-left: 4px;
@@ -222,14 +238,14 @@ window#waybar {
 #custom-launcher {
     background-color: transparent;
     color: #89b4fa;
-    font-size: 20px;
+    ${fontl}
     padding: 0 10px;
     margin: 2px 0;
 }
 
 
 #workspaces {
-background-color: #2A3239;;
+${bgm}
 color: #FFFFFF;
 border: 2px solid black;
 margin-top: 2px;
@@ -238,7 +254,8 @@ border-radius: 5px;
 }
 
 #workspaces button {
-    background-color: #2A3239;;
+    font-size: 30px;
+    ${bgm};
     color: #FFFFFF;
     margin: 2px;
     padding: 5px;
@@ -256,7 +273,9 @@ border-radius: 5px;
   transition: none;
 }
 #temperature {
-    background-color: #2A3239;;
+    ${font}
+    ${bgm};
+
     padding: 4px 12px;
     margin: 0px 0;
     border-top-left-radius: 5px;
@@ -265,37 +284,40 @@ border-radius: 5px;
 }
 
 #clock{
-	background-color: #2A3239;;
-	padding: 2px 0;  /* 2 - сверху снизу, 6 - српава, слева*/
-	padding-right: 10px;
+	${bgm};
+	padding: 0px 0;  /* 2 - сверху снизу, 6 - српава, слева*/
+	padding-right: 3px;
+	padding-left: 3px;
 	margin: 0px 0;
-	border-radius: 0px;
+	border-radius: 5px;
 	margin-top: 2px;
+	${font}
 }
 #disk{ 
-    background-color: #2A3239;
+    ${bgm}
     padding: 4px 12px; /* 10px сверху, 20px справа, 30px снизу, 40px слева */
     margin: 0px 0;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
     margin-top: 2px;
+    ${font}
 
 }
 
 #custom-bluetooth { 
-    background-color: #2A3239;
+    ${bgm}
     padding: 4px 12px; /* 10px сверху, 20px справа, 30px снизу, 40px слева */
     margin: 0px 0;
     margin-top: 2px;
 }
 #battery{
-    background-color: #2A3239;
+    ${bgm}
     padding: 4px 12px; /* 10px сверху, 20px справа, 30px снизу, 40px слева */
     margin: 0px 0;
     margin-top: 2px;
 }
 #network{
-    background-color: #2A3239;
+    ${bgm}
     padding: 4px 12px; /* 10px сверху, 20px справа, 30px снизу, 40px слева */
     border-radius: 0px;
     border-bottom-left-radius: 5px;
@@ -303,20 +325,22 @@ border-radius: 5px;
     margin-top: 2px;
 }
 #pulseaudio {
-        background-color: #2A3239;;
+        ${bgm};
+	${fontp}
         padding: 4px 12px 4px 12px;
 	border-bottom-right-radius: 5px;
 	border-top-right-radius: 5px;
 	margin-top: 2px;
 }
 #memory {
-        background-color: #2A3239;;
+        ${bgm};
         padding: 2px 6px;
         border-radius: 0px;
 	margin-top: 2px;
 }
 #cpu{
-        background-color: #2A3239;
+	${fontc}
+        ${bgm}
         padding: 4px 10px;
         border-radius: 0px;
 	margin-top: 2px;
@@ -324,7 +348,7 @@ border-radius: 5px;
 #custom-power {
     background-color: transparent;
     color: #f38ba8;
-    font-size: 20px;
+    ${font}
     padding: 0 12px;
     margin: 4px 0;
     margin-top: 2px;

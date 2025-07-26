@@ -9,7 +9,10 @@
 
   environment.systemPackages = with pkgs; [
 
+
     # --- Base Applications ---
+    micro
+    mpv
     tor
     osu-lazer
     upower

@@ -22,6 +22,7 @@ settings = {
 	"SUPER, B, exec, bluetoothctl connect 9C:49:52:96:C8:87"
 	"SUPER, T, exec, /home/alloar/.config/hypr/prog.sh"
 	"SUPER, K, exec, hyprctl dispatch pin active && hyprctl dispatch togglefloating && hyprctl dispatch resizeactive exact 480 270"
+	"SUPER, H, exec, cd ~/nix && home-manager switch --flake .#alloar"
 
 	# ------Workspaces binds------------------------------------------------------------------------------------------------------------------------>
 	# Перемещение окон

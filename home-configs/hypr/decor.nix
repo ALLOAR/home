@@ -16,6 +16,7 @@
 			# Прозрачность = ee = 93%
 
 			#col.active_border = "rgba(ff00ffee) rgba(ff8800ee) rgba(ffff00ee) 45deg";
+			col.active_border = "rgba(0f121eee) rgba(ff8800ee) rgba(ffff00ee) 45deg";
 			#col.inactive_border = "rgba(595959aa)";
 
 			# Set to true to enable resizing windows by clicking and dragging on borders

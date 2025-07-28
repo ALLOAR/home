@@ -3,7 +3,8 @@
 {
 settings = {
 	bind = [
-	"SUPER, RETURN, exec, alacritty"
+	#"SUPER, RETURN, exec, alacritty"
+	"SUPER, RETURN, exec, foot"
 	"SUPER, C, killactive,"
 	"SUPER, M, exit,"
 	"SUPER, E, exec, thunar"

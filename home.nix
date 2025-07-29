@@ -12,7 +12,7 @@
 	./home-configs/hyprland.nix
 	./home-configs/waybar.nix
 	./home-configs/wofi.nix
-	./home-configs/systemd.nix
+	#./home-configs/systemd.nix
 	./home-configs/gtk.nix
 	./home-configs/dunst.nix
 	./bandle.nix

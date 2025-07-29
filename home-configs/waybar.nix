@@ -1,15 +1,16 @@
 let 
 clock = "clock";
-bgm = "background-color: transparent;";	
-#bgm = "background-color: #2A3239;"; 
-# background modules
-bgw = "background-color: rgba(0, 0, 0, 0.6);"; #background all waybar
-color = "";
+#bgm = "background-color: transparent;";	
+bgm = "background-color: rgba(4, 8, 20, 1);"; # background modules
+bgw = "background-color: rgba(0, 0, 0, 0.4);"; #background all waybar
+bgb = "background-color: rgba(0, 0, 0, 0.0);"; # background battery 
 font = "font-size: 16px;";
 fontp = "font-size: 16px;"; #font pulseaudio
 fontc = "font-size: 16px;"; #font cpu
 fontw = "font-size: 30px;"; #font workspaces
 fontl = "font-size: 25px;"; #font laucher
+fontm = "font-size: 16px;"; #font memoryw
+fontb = "font-size: 15px;"; #font battery
 in
 {
   programs.waybar = {
@@ -23,14 +24,14 @@ in
     #modules-center= ["temperature" "cpu" "clock" "memory" "pulseaudio"];
     #modules-right= ["custom/youtube-music" "custom/firefox" "custom/steam" "custom/discord" "custom/telegram-desktop" "custom/alacritty" "network" "battery" "hyprland/language" "disk" "custom/power"];
 
-	modules-left= [ "custom/launcher" "cpu" "pulseaudio" ];
-	modules-center= [ "hyprland/workspaces" ];
-	modules-right = [ "hyprland/language" "clock" ];
+	modules-left= [ "custom/launcher" "tray" ];
+	modules-center= [ "cpu" "pulseaudio" "memory" "hyprland/workspaces" "hyprland/language" "clock" ];
+	modules-right = [ "battery" ];
 
-#Нерабочий мусор
+
 "tray" = {
-        icon-size = 16;
-        spacing = 0;
+        icon-size = 20;
+        spacing = 5;
     };
 
 "hyprland/language" = {
@@ -38,11 +39,12 @@ in
         format-ru = "RU";
 	      min-length = 5;
 	      tooltip = false;
-  # };
+  };
 
 "hyprland/workspaces"= {
     format= "{icon}";
     on-click= "activate";
+    all-outputs= true;
     format-icons= {
         "1"= "  ";
         "2"= "   ";
@@ -145,7 +147,7 @@ in
 }; 
 
     pulseaudio= {
-        format= "{icon} {volume}%";
+        format= "{icon} {volume}%   ";
         format-muted= "󰖁 Muted";
         scroll-step= 5;
         on-click= "pamixer -t";
@@ -167,7 +169,7 @@ in
     "clock"= {
 	interval= 60;
 	tooltip= true;
-        format = "{:%d.%m.%Y | %H:%M}";
+        format = "{:%d.%m.%Y | %H:%M  }";
 	tooltip-format= "{:%Y-%m-%d}";
 	on-click= "hyprctl dispatch exec \"[float; move 860 37] gsimplecal\"";
   
@@ -175,14 +177,14 @@ in
 
     "cpu"= {
         interval= 5;
-        format= "󰻠 {usage}%";
+        format= "󰻠 {usage}%   ";
         max-length= 10;
 	on-click= "hyprctl dispatch exec \"[float; size 400 300; move 700 37] alacritty -e htop\"";
     };
 
     "memory"= {
         interval= 5;
-        format= "󰍛 {percentage}%";
+	format= "{used:0.1f}GiB";
         max-length= 10;
     };
 
@@ -247,10 +249,8 @@ window#waybar {
 #workspaces {
 ${bgm}
 color: #FFFFFF;
-border: 2px solid black;
-margin-top: 2px;
 border: #2A3239;;
-border-radius: 5px; 
+padding: 0px 0px 0px 6px;
 }
 
 #workspaces button {
@@ -286,11 +286,7 @@ border-radius: 5px;
 #clock{
 	${bgm};
 	padding: 0px 0;  /* 2 - сверху снизу, 6 - српава, слева*/
-	padding-right: 3px;
-	padding-left: 3px;
-	margin: 0px 0;
-	border-radius: 5px;
-	margin-top: 2px;
+	border-bottom-right-radius: 30px;
 	${font}
 }
 #disk{ 
@@ -311,10 +307,10 @@ border-radius: 5px;
     margin-top: 2px;
 }
 #battery{
-    ${bgm}
-    padding: 4px 12px; /* 10px сверху, 20px справа, 30px снизу, 40px слева */
+    ${bgb}
+    ${fontb}
     margin: 0px 0;
-    margin-top: 2px;
+    
 }
 #network{
     ${bgm}
@@ -327,23 +323,18 @@ border-radius: 5px;
 #pulseaudio {
         ${bgm};
 	${fontp}
-        padding: 4px 12px 4px 12px;
-	border-bottom-right-radius: 5px;
-	border-top-right-radius: 5px;
-	margin-top: 2px;
 }
 #memory {
         ${bgm};
-        padding: 2px 6px;
+	${fontm}
         border-radius: 0px;
-	margin-top: 2px;
+	margin-top: 0px;
 }
 #cpu{
 	${fontc}
         ${bgm}
-        padding: 4px 10px;
-        border-radius: 0px;
-	margin-top: 2px;
+        border-bottom-left-radius: 30px;
+	padding-left: 8px;
 }
 #custom-power {
     background-color: transparent;

@@ -34,7 +34,9 @@ settings = {
 	"opacity 0.96 0.96, class:^firefox$"
 	"opacity 1.0 1.0, title:^(.*YouTube — Mozilla Firefox)$"
 	"workspace 3, class:^(firefox)$"
-
+	
+	#FOOT
+#	 "opacity 0.95 0.95, class:^(.*foot.*)$"
 
 	];
 };

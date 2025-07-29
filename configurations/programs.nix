@@ -11,6 +11,10 @@
 
 
     # --- Base Applications ---
+    xclip
+    gource
+    helix
+    feh
     micro
     mpv
     tor

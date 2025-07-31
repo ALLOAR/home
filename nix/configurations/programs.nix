@@ -9,7 +9,21 @@
 
   environment.systemPackages = with pkgs; [
 
+
     # --- Base Applications ---
+    rofi-wayland-unwrapped
+    mpvpaper
+    libreoffice-qt6-fresh
+    xclip
+    gource
+    helix
+    feh
+    micro
+    mpv
+    tor
+    osu-lazer
+    upower
+    wireplumber
     yad
     docker_28
     lsof

@@ -11,13 +11,15 @@
                         rebuildh = "home-manager switch";
                         prog = "sudo nano /etc/nixos/configurations/programs.nix";
                         c = "sudo nano /etc/nixos/configuration.nix";
-			cdc = "cd /etc/nixos/";
-			cdh = "cd /home/alloar/.config/home-manager/";
-                	act = "source venv/bin/activate";
-			deac = "deactivate";
-			p = "python";
-			p-start = "python3 -m venv venv";
-			hyp = "nano ~/.config/home-manager/config/hypr/hyprland.conf";
+						cdc = "cd /etc/nixos/";
+						cdh = "cd /home/alloar/.config/home-manager/";
+           				act = "source venv/bin/activate";
+						deac = "deactivate";
+						p = "python";
+						p-start = "python3 -m venv venv";
+						hyp = "nano ~/.config/home-manager/config/hypr/hyprland.conf";
+						rg = "git add . && git commit -m \"$(date '+%Y-%m-%d %H:%M:%S')\"";
+						mk = "micro";
 		# ВАЖНО --- надо перезапустить zsh после применения конфигурации, можно просто перезайти а можно
 		# exec zsh	
 		};

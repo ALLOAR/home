@@ -10,13 +10,14 @@ settings = {
           "linear,0,0,1,1"
           "almostLinear,0.5,0.5,0.75,1.0"
           "quick,0.15,0,0.1,1"
+	  "easeOut, 0.2, 0.7, 0.2, 1.0"
         ];
         animation = [
           "global, 1, 10, default"
           "border, 1, 5.39, easeOutQuint"
           "windows, 1, 4.79, easeOutQuint"
-          "windowsIn, 1, 4.1, easeOutQuint, slidevert 100%"
-          "windowsOut, 1, 1.2, easeOutQuint, slidevert 50%"
+          #"windowsIn, 1, 4.1, easeOutQuint, slidevert 100%"
+          #"windowsOut, 1, 1.2, easeOutQuint, slidevert 50%"
           "fadeIn, 1, 1.73, almostLinear"
           "fadeOut, 1, 1.46, almostLinear"
           "fade, 1, 3.03, quick"
@@ -28,13 +29,17 @@ settings = {
           "workspaces, 1, 1.94, almostLinear, slide"
           "workspacesIn, 1, 1.21, almostLinear, slide"
           "workspacesOut, 1, 1.94, almostLinear, slide"
-		];
+	  "windowsOut, 1, 5, easeOut, slide"
+	  "windowsIn, 1, 5, easeOut, slide"
+	];
 	};
 general = {  
 gaps_in = 3;
 gaps_out = 10;
-	border_size = 2;
-	"col.active_border" = "rgba(ff00ffee) rgba(ff8800ee) rgba(ffff00ee) 45deg";
+	border_size = 0;
+	#"col.active_border" = "rgba(ff00ffee) rgba(ff8800ee) rgba(ffff00ee) 45deg";
+	#"col.active_border" = "rgba(0f121eee) rgba(2a2f4fee) rgba(3c2a5bee) 45deg";
+	"col.active_border" = "rgba(1a1e33ee) rgba(383d65ee) rgba(4b3a75ee) 45deg";
 	"col.inactive_border" = "rgba(595959aa)";
 	resize_on_border = false;
 	allow_tearing = false;

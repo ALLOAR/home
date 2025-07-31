@@ -3,7 +3,8 @@
 {
 settings = {
 	bind = [
-	"SUPER, RETURN, exec, alacritty"
+	#"SUPER, RETURN, exec, alacritty"
+	"SUPER, RETURN, exec, foot"
 	"SUPER, C, killactive,"
 	"SUPER, M, exit,"
 	"SUPER, E, exec, thunar"
@@ -20,9 +21,10 @@ settings = {
 	"SUPER, I, exec, hyprctl dispatch togglefloating && hyprctl dispatch resizeactive exact 1740 950 && hyprctl dispatch moveactive exact 90 70"
 	"ALT, TAB, workspace, previous"
 	"SUPER, B, exec, bluetoothctl connect 9C:49:52:96:C8:87"
-	"SUPER, T, exec, /home/alloar/.config/hypr/prog.sh"
 	"SUPER, K, exec, hyprctl dispatch pin active && hyprctl dispatch togglefloating && hyprctl dispatch resizeactive exact 480 270"
-
+	"SUPER, H, exec, cd ~/nix && home-manager switch --flake .#alloar"
+	"SUPER SHIFT, T, exec, /home/alloar/nix/wofi/theme.sh"
+	"SUPER CTRL, T, exec, pkill mpvpaper"
 	# ------Workspaces binds------------------------------------------------------------------------------------------------------------------------>
 	# Перемещение окон
 	"SUPER SHIFT, left, swapwindow, l"
@@ -65,7 +67,7 @@ settings = {
 
 	# Программы
 	"SUPER, F, exec, firefox && notify-send \"Firefox started\""
-	"SUPER, SPACE, exec, \$menu"
+	"SUPER, SPACE, exec, wofi"
 	"SUPER+ALT, R, exec, hyprctl reload && notify-send \"Hyprland Reloaded\""
 	"SUPER, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
 
@@ -98,6 +100,8 @@ settings = {
 		bindel = [
 			", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+"
 			", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
+			"CTRL, XF86AudioRaiseVolume, exec, brightnessctl s 10%+"
+                        "CTRL, XF86AudioLowerVolume, exec, brightnessctl s 10%-"
 			", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 			", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
 			", XF86MonBrightnessUp, exec, brightnessctl s 10%+"

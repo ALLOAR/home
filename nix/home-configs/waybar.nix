@@ -1,3 +1,17 @@
+let 
+clock = "clock";
+#bgm = "background-color: transparent;";	
+bgm = "background-color: rgba(4, 8, 20, 1);"; # background modules
+bgw = "background-color: rgba(0, 0, 0, 0.4);"; #background all waybar
+bgb = "background-color: rgba(0, 0, 0, 0.0);"; # background battery 
+font = "font-size: 16px;";
+fontp = "font-size: 16px;"; #font pulseaudio
+fontc = "font-size: 16px;"; #font cpu
+fontw = "font-size: 30px;"; #font workspaces
+fontl = "font-size: 25px;"; #font laucher
+fontm = "font-size: 16px;"; #font memoryw
+fontb = "font-size: 15px;"; #font battery
+in
 {
   programs.waybar = {
     enable = true;
@@ -6,14 +20,18 @@
         layer = "top";
         position = "top";
 
-    modules-left= ["custom/launcher" "hyprland/workspaces" "custom/bluetooth" "custom/window-title" ];
-    modules-center= ["temperature" "cpu" "clock" "memory" "pulseaudio"];
-    modules-right= ["custom/youtube-music" "custom/firefox" "custom/steam" "custom/discord" "custom/telegram-desktop" "custom/alacritty" "network" "battery" "hyprland/language" "disk" "custom/power"];
+    #modules-left= ["custom/launcher" "hyprland/workspaces" "custom/bluetooth" "custom/window-title" ];
+    #modules-center= ["temperature" "cpu" "clock" "memory" "pulseaudio"];
+    #modules-right= ["custom/youtube-music" "custom/firefox" "custom/steam" "custom/discord" "custom/telegram-desktop" "custom/alacritty" "network" "battery" "hyprland/language" "disk" "custom/power"];
 
-#Нерабочий мусор
+	modules-left= [ "custom/launcher" "tray" ];
+	modules-center= [ "cpu" "pulseaudio" "memory" "hyprland/workspaces" "hyprland/language" "clock" ];
+	modules-right = [ "battery" ];
+
+
 "tray" = {
-        icon-size = 16;
-        spacing = 0;
+        icon-size = 20;
+        spacing = 5;
     };
 
 "hyprland/language" = {
@@ -21,15 +39,16 @@
         format-ru = "RU";
 	      min-length = 5;
 	      tooltip = false;
-    };
+  };
 
 "hyprland/workspaces"= {
     format= "{icon}";
     on-click= "activate";
+    all-outputs= true;
     format-icons= {
         "1"= "  ";
         "2"= "   ";
-        "3"= "  ";
+        "3"= " ";
         "4"= "  ";
         "5"= " 󰓓 ";
         "6"= "●";
@@ -112,7 +131,7 @@
     path= "/";
     interval= 30;
     };
-
+   
     battery= {
     format= "{capacity}% {icon}";
     format-charging= "⚡ {capacity}%";
@@ -124,11 +143,11 @@
         warning= 30;
         critical= 15;
     };
-    format-icons= ["" "" " " " " " "];
+    format-icons= ["" " " " " " " " "];
 }; 
 
     pulseaudio= {
-        format= "{icon} {volume}%";
+        format= "{icon} {volume}%   ";
         format-muted= "󰖁 Muted";
         scroll-step= 5;
         on-click= "pamixer -t";
@@ -150,21 +169,22 @@
     "clock"= {
 	interval= 60;
 	tooltip= true;
-	format= "{:%H:%M}";
+        format = "{:%d.%m.%Y | %H:%M  }";
 	tooltip-format= "{:%Y-%m-%d}";
 	on-click= "hyprctl dispatch exec \"[float; move 860 37] gsimplecal\"";
+  
     };
 
     "cpu"= {
         interval= 5;
-        format= "󰻠 {usage}%";
+        format= "󰻠 {usage}%   ";
         max-length= 10;
 	on-click= "hyprctl dispatch exec \"[float; size 400 300; move 700 37] alacritty -e htop\"";
     };
 
     "memory"= {
         interval= 5;
-        format= "󰍛 {percentage}%";
+	format= "{used:0.1f}GiB";
         max-length= 10;
     };
 
@@ -190,11 +210,13 @@ style = ''
     min-height: 0;
 }
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.0);
+    ${bgw} /* Чёрный с прозрачностью */
     color: #ffffff;
 }
+
 #custom-window-title {
-    background-color: #2A3239;;
+    ${bgm};
+    ${font}
     margin: 0px 0;
     border-radius: 5px;
     margin-top: 2px;
@@ -202,12 +224,12 @@ window#waybar {
     padding: 0 4px;    
 }
 #language {
-	background-color: #2A3239;
-        margin-top: 2px;
-        font-size: 17px;
+	${font}
+	${bgm}
 }
 #tray, #custom-firefox, #custom-steam, #custom-discord, #custom-telegram-desktop, #custom-alacritty, #custom-youtube-music, #custom-keyboard {
-	background-color: #2A3239;
+	${font}
+	${bgm}
 	margin-top: 2px;
 	margin-right: 4px;
 	margin-left: 4px;
@@ -218,23 +240,22 @@ window#waybar {
 #custom-launcher {
     background-color: transparent;
     color: #89b4fa;
-    font-size: 20px;
+    ${fontl}
     padding: 0 10px;
     margin: 2px 0;
 }
 
 
 #workspaces {
-background-color: #2A3239;;
+${bgm}
 color: #FFFFFF;
-border: 2px solid black;
-margin-top: 2px;
 border: #2A3239;;
-border-radius: 5px; 
+padding: 0px 0px 0px 6px;
 }
 
 #workspaces button {
-    background-color: #2A3239;;
+    font-size: 30px;
+    ${bgm};
     color: #FFFFFF;
     margin: 2px;
     padding: 5px;
@@ -252,7 +273,9 @@ border-radius: 5px;
   transition: none;
 }
 #temperature {
-    background-color: #2A3239;;
+    ${font}
+    ${bgm};
+
     padding: 4px 12px;
     margin: 0px 0;
     border-top-left-radius: 5px;
@@ -261,37 +284,36 @@ border-radius: 5px;
 }
 
 #clock{
-	background-color: #2A3239;;
-	padding: 2px 0;  /* 2 - сверху снизу, 6 - српава, слева*/
-	padding-right: 10px;
-	margin: 0px 0;
-	border-radius: 0px;
-	margin-top: 2px;
+	${bgm};
+	padding: 0px 0;  /* 2 - сверху снизу, 6 - српава, слева*/
+	border-bottom-right-radius: 30px;
+	${font}
 }
 #disk{ 
-    background-color: #2A3239;
+    ${bgm}
     padding: 4px 12px; /* 10px сверху, 20px справа, 30px снизу, 40px слева */
     margin: 0px 0;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
     margin-top: 2px;
+    ${font}
 
 }
 
 #custom-bluetooth { 
-    background-color: #2A3239;
+    ${bgm}
     padding: 4px 12px; /* 10px сверху, 20px справа, 30px снизу, 40px слева */
     margin: 0px 0;
     margin-top: 2px;
 }
 #battery{
-    background-color: #2A3239;
-    padding: 4px 12px; /* 10px сверху, 20px справа, 30px снизу, 40px слева */
+    ${bgb}
+    ${fontb}
     margin: 0px 0;
-    margin-top: 2px;
+    
 }
 #network{
-    background-color: #2A3239;
+    ${bgm}
     padding: 4px 12px; /* 10px сверху, 20px справа, 30px снизу, 40px слева */
     border-radius: 0px;
     border-bottom-left-radius: 5px;
@@ -299,28 +321,25 @@ border-radius: 5px;
     margin-top: 2px;
 }
 #pulseaudio {
-        background-color: #2A3239;;
-        padding: 4px 12px 4px 12px;
-	border-bottom-right-radius: 5px;
-	border-top-right-radius: 5px;
-	margin-top: 2px;
+        ${bgm};
+	${fontp}
 }
 #memory {
-        background-color: #2A3239;;
-        padding: 2px 6px;
+        ${bgm};
+	${fontm}
         border-radius: 0px;
-	margin-top: 2px;
+	margin-top: 0px;
 }
 #cpu{
-        background-color: #2A3239;
-        padding: 4px 10px;
-        border-radius: 0px;
-	margin-top: 2px;
+	${fontc}
+        ${bgm}
+        border-bottom-left-radius: 30px;
+	padding-left: 8px;
 }
 #custom-power {
     background-color: transparent;
     color: #f38ba8;
-    font-size: 20px;
+    ${font}
     padding: 0 12px;
     margin: 4px 0;
     margin-top: 2px;

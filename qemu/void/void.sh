@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 qemu-system-x86_64 \
   -enable-kvm \
   -cpu host \
@@ -6,8 +7,10 @@ qemu-system-x86_64 \
   -machine q35 \
   -drive if=pflash,format=raw,readonly=on,file=./my_code.fd \
   -drive if=pflash,format=raw,file=./my_vars.fd \
-  -boot order=d \
-  -drive file=nix.qcow2,format=qcow2 \
-  -cdrom ./nix.iso \
+  -boot order=c \
+  -drive file=../disk/void.qcow2,format=qcow2 \
+  -cdrom ./void.iso \
   -vga virtio \
   -device virtio-gpu-pci
+  -display gtk,gl=on
+

@@ -1,0 +1,40 @@
+
+# for create a new disk -f here because i want set the format disk, qemu can automatically create other disk type
+#qcow2 is good because it dynamically change size on pc and this just work good with qemu
+qemu-img create -f qcow2 nix.qcow2 150G
+
+qemu-system-x86_64 \
+#turn on hardware virtualization via KVM
+  -enable-kvm \ 
+
+# use hosts cpu include all extensions
+  -cpu host \
+
+# Provides 2 vCores for the guest system
+  -smp 2 \
+
+# How much RAM
+  -m 4096 \
+
+#Uses Q35 chipset this must be when use UEFI bios because its like logic motherboard
+  -machine q35 \
+
+#This just need for uefi bios i forgot how and why
+  -drive if=pflash,format=raw,readonly=on,file=./my_code.fd \
+  -drive if=pflash,format=raw,file=./my_vars.fd \
+
+# From where will be boot 
+# boot order=c -from iso
+# boot d - from disk
+  -boot order=c \
+
+# where virtual disk
+  -drive file=../disk/nix.qcow2,format=qcow2 \
+
+#Where iso
+  -cdrom ../iso/nix.iso \
+
+#Here I tried fix hyprland but its imposible
+  -vga virtio \
+  -device virtio-gpu-pci
+  -display gtk,gl=on

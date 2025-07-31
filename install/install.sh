@@ -36,6 +36,7 @@ cd
 sudo nixos-generate-config --root /mnt
 git clone https://github.com/ALLOAR/home.git
 cp -r ~/home/nix/* /mnt/etc/nixos/
-cp /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/configurations/
-sudo nixos-install --root /mnt --flake .#nixos
+cp /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/configurations
+cd /mnt/etc/nixos/
+nixos-install --flake .#nixos
 

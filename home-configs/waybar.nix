@@ -143,7 +143,7 @@ in
         warning= 30;
         critical= 15;
     };
-    format-icons= ["" "" " " " " " "];
+    format-icons= ["" " " " " " " " "];
 }; 
 
     pulseaudio= {

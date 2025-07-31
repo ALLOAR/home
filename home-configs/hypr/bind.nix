@@ -24,6 +24,7 @@ settings = {
 	"SUPER, T, exec, /home/alloar/.config/hypr/prog.sh"
 	"SUPER, K, exec, hyprctl dispatch pin active && hyprctl dispatch togglefloating && hyprctl dispatch resizeactive exact 480 270"
 	"SUPER, H, exec, cd ~/nix && home-manager switch --flake .#alloar"
+#        "ALT_SHIFT, exec, bash /home/alloar/nix/home-configs/hypr/language.sh"
 
 	# ------Workspaces binds------------------------------------------------------------------------------------------------------------------------>
 	# Перемещение окон

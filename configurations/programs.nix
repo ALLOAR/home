@@ -11,6 +11,7 @@
 
 
     # --- Base Applications ---
+    libreoffice-qt6-fresh
     xclip
     gource
     helix

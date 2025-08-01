@@ -1,4 +1,6 @@
+{ config, pkgs, colors, ... }: 
 let 
+
 clock = "clock";
 #bgm = "background-color: transparent;";	
 bgm = "background-color: rgba(4, 8, 20, 1);"; # background modules
@@ -238,7 +240,8 @@ window#waybar {
 }
 
 #custom-launcher {
-    background-color: transparent;
+${colors.bgt}
+/*background-color: transparent; */
     color: #89b4fa;
     ${fontl}
     padding: 0 10px;

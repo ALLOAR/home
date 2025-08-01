@@ -21,11 +21,10 @@ settings = {
 	"SUPER, I, exec, hyprctl dispatch togglefloating && hyprctl dispatch resizeactive exact 1740 950 && hyprctl dispatch moveactive exact 90 70"
 	"ALT, TAB, workspace, previous"
 	"SUPER, B, exec, bluetoothctl connect 9C:49:52:96:C8:87"
-	"SUPER, T, exec, /home/alloar/.config/hypr/prog.sh"
 	"SUPER, K, exec, hyprctl dispatch pin active && hyprctl dispatch togglefloating && hyprctl dispatch resizeactive exact 480 270"
 	"SUPER, H, exec, cd ~/nix && home-manager switch --flake .#alloar"
-#        "ALT_SHIFT, exec, bash /home/alloar/nix/home-configs/hypr/language.sh"
-
+	"SUPER SHIFT, T, exec, /home/alloar/nix/wofi/theme.sh"
+	"SUPER CTRL, T, exec, pkill mpvpaper"
 	# ------Workspaces binds------------------------------------------------------------------------------------------------------------------------>
 	# Перемещение окон
 	"SUPER SHIFT, left, swapwindow, l"

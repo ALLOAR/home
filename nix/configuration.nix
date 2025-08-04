@@ -12,8 +12,14 @@
   systemd.user.services."pulseaudio".serviceConfig.Nice = -10;
   systemd.services."bluetooth".serviceConfig.Nice = -10;
   services.upower.enable = true;
-  services.pipewire.enable = true;
+ # services.pipewire.enable = true;
   services.pipewire.wireplumber.enable = true;
+  services.pipewire = {
+    enable = true;
+    audio.enable = true;
+    pulse.enable = true;
+    alsa.enable = true;
+  };
   services.xserver.enable = true;
   services.xserver.windowManager.bspwm.enable = true;
   services.xserver.displayManager.gdm.enable = true;

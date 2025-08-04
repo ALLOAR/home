@@ -11,6 +11,7 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }: let
+    colors = import ./home-configs/colors.nix;
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
@@ -30,7 +31,10 @@
       alloar = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs;
         modules = [ ./home.nix ];
+		extraSpecialArgs = {
+        	inherit colors; # Передаём colors в модули
       };
+      };	
     };
   };
 }

@@ -1,0 +1,9 @@
+width=1200
+height=300
+location=top
+show=drun
+prompt=Select Theme
+allow_images=true
+image_size=200
+columns=6
+orientation=horizontal

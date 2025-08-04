@@ -11,7 +11,11 @@
 
 
     # --- Base Applications ---
-    rofi-wayland-unwrapped
+    python313Packages.tkinter
+    python313Packages.pillow
+    lsp-plugins 
+    helvum
+    easyeffects
     mpvpaper
     libreoffice-qt6-fresh
     xclip

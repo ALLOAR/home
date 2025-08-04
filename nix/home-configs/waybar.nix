@@ -1,17 +1,4 @@
-let 
-clock = "clock";
-#bgm = "background-color: transparent;";	
-bgm = "background-color: rgba(4, 8, 20, 1);"; # background modules
-bgw = "background-color: rgba(0, 0, 0, 0.4);"; #background all waybar
-bgb = "background-color: rgba(0, 0, 0, 0.0);"; # background battery 
-font = "font-size: 16px;";
-fontp = "font-size: 16px;"; #font pulseaudio
-fontc = "font-size: 16px;"; #font cpu
-fontw = "font-size: 30px;"; #font workspaces
-fontl = "font-size: 25px;"; #font laucher
-fontm = "font-size: 16px;"; #font memoryw
-fontb = "font-size: 15px;"; #font battery
-in
+{ config, pkgs, colors, ... }: 
 {
   programs.waybar = {
     enable = true;
@@ -210,13 +197,13 @@ style = ''
     min-height: 0;
 }
 window#waybar {
-    ${bgw} /* Чёрный с прозрачностью */
+    ${colors.bgw} /* Чёрный с прозрачностью */
     color: #ffffff;
 }
 
 #custom-window-title {
-    ${bgm};
-    ${font}
+    ${colors.bgm};
+    ${colors.font}
     margin: 0px 0;
     border-radius: 5px;
     margin-top: 2px;
@@ -224,12 +211,12 @@ window#waybar {
     padding: 0 4px;    
 }
 #language {
-	${font}
-	${bgm}
+	${colors.font}
+	${colors.bgm}
 }
 #tray, #custom-firefox, #custom-steam, #custom-discord, #custom-telegram-desktop, #custom-alacritty, #custom-youtube-music, #custom-keyboard {
-	${font}
-	${bgm}
+	${colors.font}
+	${colors.bgm}
 	margin-top: 2px;
 	margin-right: 4px;
 	margin-left: 4px;
@@ -238,16 +225,16 @@ window#waybar {
 }
 
 #custom-launcher {
-    background-color: transparent;
+background-color: transparent;
     color: #89b4fa;
-    ${fontl}
+    ${colors.fontl}
     padding: 0 10px;
     margin: 2px 0;
 }
 
 
 #workspaces {
-${bgm}
+${colors.bgm}
 color: #FFFFFF;
 border: #2A3239;;
 padding: 0px 0px 0px 6px;
@@ -255,7 +242,7 @@ padding: 0px 0px 0px 6px;
 
 #workspaces button {
     font-size: 30px;
-    ${bgm};
+    ${colors.bgm};
     color: #FFFFFF;
     margin: 2px;
     padding: 5px;
@@ -273,8 +260,8 @@ padding: 0px 0px 0px 6px;
   transition: none;
 }
 #temperature {
-    ${font}
-    ${bgm};
+    ${colors.font}
+    ${colors.bgm};
 
     padding: 4px 12px;
     margin: 0px 0;
@@ -284,36 +271,36 @@ padding: 0px 0px 0px 6px;
 }
 
 #clock{
-	${bgm};
+	${colors.bgm};
 	padding: 0px 0;  /* 2 - сверху снизу, 6 - српава, слева*/
 	border-bottom-right-radius: 30px;
-	${font}
+	${colors.font}
 }
 #disk{ 
-    ${bgm}
+    ${colors.bgm}
     padding: 4px 12px; /* 10px сверху, 20px справа, 30px снизу, 40px слева */
     margin: 0px 0;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
     margin-top: 2px;
-    ${font}
+    ${colors.font}
 
 }
 
 #custom-bluetooth { 
-    ${bgm}
+    ${colors.bgm}
     padding: 4px 12px; /* 10px сверху, 20px справа, 30px снизу, 40px слева */
     margin: 0px 0;
     margin-top: 2px;
 }
 #battery{
-    ${bgb}
-    ${fontb}
+    ${colors.bgb}
+    ${colors.fontb}
     margin: 0px 0;
     
 }
 #network{
-    ${bgm}
+    ${colors.bgm}
     padding: 4px 12px; /* 10px сверху, 20px справа, 30px снизу, 40px слева */
     border-radius: 0px;
     border-bottom-left-radius: 5px;
@@ -321,25 +308,25 @@ padding: 0px 0px 0px 6px;
     margin-top: 2px;
 }
 #pulseaudio {
-        ${bgm};
-	${fontp}
+        ${colors.bgm};
+	${colors.fontp}
 }
 #memory {
-        ${bgm};
-	${fontm}
+        ${colors.bgm};
+	${colors.fontm}
         border-radius: 0px;
 	margin-top: 0px;
 }
 #cpu{
-	${fontc}
-        ${bgm}
+	${colors.fontc}
+        ${colors.bgm}
         border-bottom-left-radius: 30px;
 	padding-left: 8px;
 }
 #custom-power {
     background-color: transparent;
     color: #f38ba8;
-    ${font}
+    ${colors.font}
     padding: 0 12px;
     margin: 4px 0;
     margin-top: 2px;

@@ -1,0 +1,49 @@
+window {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  border: 2px solid #ffa500;
+}
+
+#inner-box {
+  background-color: transparent;
+  padding: 15px;
+}
+
+#outer-box {
+  margin: 15px;
+}
+
+#entry {
+  /* background-color: #00ff00; */
+  background-color: transparent;
+  color: #ff0000;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  min-height: 220px; /* Увеличено для больших иконок */
+}
+
+#entry:selected {
+  background-color: #ffa500;
+  color: white;
+}
+
+#image {
+  margin-bottom: 1px; /* Расстояние между иконкой и текстом */
+}
+
+#text {
+  color: white;
+  font-size: 1px; /* Увеличен для читаемости */
+  text-align: center;
+}
+#input {
+    padding: 2px 4px;
+    font-size: 10px;
+    min-height: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    color: white;
+}
+

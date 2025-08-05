@@ -1,0 +1,3 @@
+/etc/xbps.d/hyprland-void.conf
+
+repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc

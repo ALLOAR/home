@@ -62,10 +62,12 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *firefox[] = { "firefox", NULL };
 static const char *flameshot[] = { "flameshot", "gui", NULL };
+static const char *zen[] = { "/home/alloar/.config/zen/zen", NULL };
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } }, */
 	{ MODKEY,			XK_F1,	   spawn,	   {.v = flameshot } },
+	{ MODKEY,                       XK_z,     spawn,          {.v = zen } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = firefox } },
 	{ MODKEY,             		XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },

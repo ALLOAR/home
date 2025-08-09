@@ -66,6 +66,7 @@ static const char *termcmd[]  = { "alacritty", NULL };
 static const char *firefox[] = { "firefox", NULL };
 static const char *flameshot[] = { "flameshot", "gui", NULL };
 static const char *zen[] = { "/home/alloar/.config/zen/zen", NULL };
+static const char *dwmblocks[] = { "dwmblocks", NULL };
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } }, */
@@ -94,9 +95,12 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+
 	{ 0, 				XF86XK_AudioRaiseVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
 	{ 0, 				XF86XK_AudioLowerVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
 	{ 0, 				XF86XK_AudioMute,        spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
+
+	{ Mod1Mask|ShiftMask, 0, spawn, {.v = firefox } },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)

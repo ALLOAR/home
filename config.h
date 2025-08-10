@@ -12,13 +12,21 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
-static const char col_nordic_blue[]   = "#010917";
-
+/* static const char col_cyan[]        = "#00494a"; */
+static const char col_nordic_blue[] = "#010917";
+static const char lazurit[]	    = "#00e9ed";
+static const char dark_lazurit[]    = "#00494a";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_nordic_blue  },
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 }, /* inactive */
+	[SchemeSel]  = { col_gray4, dark_lazurit,  lazurit  }, /* active */
+
 };
+/* vanitygaps settings */
+static const int gappih    = 20; /* horiz inner gap between windows */
+static const int gappiv    = 10; /* vert inner gap between windows */
+static const int gappoh    = 10; /* horiz outer gap between windows and screen edge */
+static const int gappov    = 10; /* vert outer gap between windows and screen edge */
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -70,7 +78,7 @@ static const char *dwmblocks[] = { "dwmblocks", NULL };
 static const char *obsidian[] = { "/home/alloar/.config/bsidoan/Obsidian-1.1.16.AppImage", NULL };
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	/* { MODKEY,                    XK_p,	   spawn,	   {.v = dmenucmd } }, */
+	{ MODKEY,                       XK_q,	   spawn,	   {.v = dmenucmd } },
 	{ MODKEY,                       XK_o,      spawn,          {.v = obsidian } },
 	{ MODKEY,			XK_F1,	   spawn,	   {.v = flameshot } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = zen } },
@@ -89,6 +97,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ShiftMask,		XK_d,	   setlayout,	   {.v = &layouts[3]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -98,8 +107,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 
-	{ 0, 				XF86XK_AudioRaiseVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
-	{ 0, 				XF86XK_AudioLowerVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
+	{ 0, 				XF86XK_AudioRaiseVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +2%") },
+	{ 0, 				XF86XK_AudioLowerVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -2%") },
 	{ 0, 				XF86XK_AudioMute,        spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
 
 	TAGKEYS(                        XK_1,                      0)
@@ -126,7 +135,7 @@ static const Button buttons[] = {
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
-	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
+	{ ClkTagBar,           0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };

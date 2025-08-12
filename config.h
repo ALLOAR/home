@@ -56,7 +56,7 @@ static const Layout layouts[] = {
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 	{ "[@]",      spiral },
-	{ "[\\]",     dwindle },
+	{ "[\\]",     dwindle }, /* Dont work ((( */
 };
 
 /* key definitions */
@@ -79,6 +79,7 @@ static const char *flameshot[] = { "flameshot", "gui", NULL };
 static const char *zen[] = { "/home/alloar/.config/zen/zen", NULL };
 static const char *dwmblocks[] = { "dwmblocks", NULL };
 static const char *obsidian[] = { "/home/alloar/.config/bsidoan/Obsidian-1.1.16.AppImage", NULL };
+static const char *rofi[] = { "rofi",  "-show", "drun", NULL };
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_q,	   spawn,	   {.v = dmenucmd } },
@@ -101,7 +102,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,			XK_a,	   setlayout,	   {.v = &layouts[4]} },
-	{ MODKEY,                       XK_space,  setlayout,      {9} },
+	{ MODKEY,                       XK_space,  spawn,	   {.v = rofi } },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },

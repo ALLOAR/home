@@ -1,6 +1,5 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
-#include "fix.c"
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 8;        /* snap pixel */
@@ -55,8 +54,6 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ "[@]",      spiral },
-	{ "[\\]",     dwindle }, /* Dont work ((( */
 };
 
 /* key definitions */
@@ -83,10 +80,10 @@ static const char *rofi[] = { "rofi",  "-show", "drun", NULL };
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_q,	   spawn,	   {.v = dmenucmd } },
-	{ MODKEY,                       XK_o,      spawn,          {.v = obsidian } },
+	/*{ MODKEY,                       XK_o,      spawn,          {.v = obsidian } },
 	{ MODKEY,			XK_F1,	   spawn,	   {.v = flameshot } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = zen } },
-	{ MODKEY,                       XK_p,      spawn,          {.v = firefox } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = firefox } }, */
 	{ MODKEY,             		XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },

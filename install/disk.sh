@@ -1,15 +1,15 @@
-#/usr/env/bin bash
+#/usr/bin/env bash
 set -e
 lsblk -f
 read -p " --- what disk you will use? (1/2/3...) --- \n --- " disk_choise
 DISK=$(lsblk -dno NAME | awk -v n="$disk_choise" 'NR==n')
-echo " --- you selected $DISK ---
+echo " --- you selected $DISK --- "
 
 free_disksize_raw=$(parted /dev/$DISK unit GiB print free | grep "Free Space" | tail -n1 | awk '{print $3}')
 free_disksize=${free_disksize_raw%GiB}
 
 efi_size=$(lsblk -nb -o NAME,FSTYPE,FSSIZE,FSAVAIL /dev/$DISK | awk '$2 == "vfat" {print $4}')
-efi_size_echo=$(lsblk -n -o NAME,FSTYPE,FSSIZE,FSAVAIL /dev/$DISK | awk '$2 == "vfat" {print $4}'
+efi_size_echo=$(lsblk -n -o NAME,FSTYPE,FSSIZE,FSAVAIL /dev/$DISK | awk '$2 == "vfat" {print $4}')
 
 function last_part() {
 	echo $(( $(lsblk | grep $DISK | wc -l) - 1 ))
@@ -17,7 +17,6 @@ function last_part() {
 function swap_part() {
 	echo $(( $(lsblk | grep $DISK | wc -l) - 2 ))
 }
-# usr/env/bin bash
 
 function clear_disk() {
         local efi_end_raw
@@ -39,7 +38,7 @@ function clear_disk() {
 
 	read -p " --- we will erase all data yes/no (handwrite) --- \n --- " erase
 
-	[[ "$erase" == "no" ]] && echo " --- so try yourself --- " & exit 1
+	[[ "$erase" == "no" ]] && { echo " --- so try yourself --- "; exit 1; }
 
         efi_start="1MiB"
 	read -p " --- how mush space you wanna for efi? (recomendet >2)--- \n --- you write only numer this will be in GiB --- \n --- " efi_end_raw
@@ -58,7 +57,8 @@ function clear_disk() {
 
         if [[ "${swap}" -ne 0 ]]; then
                 swap_start=${efi_end}
-                swap_end=$(( ${swap} + ${efi_end_raw} ))
+                swap_end_raw=$(( ${swap} + ${efi_end_raw} ))
+		swap_end=${swap_end_raw}GiB
                 parted /dev/$DISK -- mkpart linux-swap ${swap_start} ${swap_end}
                 parted /dev/$DISK -- mkpart primary ext4 ${swap_end} 100%
 	        last_partition=$(last_part)
@@ -71,7 +71,7 @@ function clear_disk() {
                 mkdir -p /mnt/boot
                 mount /dev/${DISK}${p}${efi_num} /mnt/boot
 
-        elif [[ "{$swap}"' -eq 0 ]]; then
+        elif [[ "{$swap}" -eq 0 ]]; then
                 parted /dev/$DISK -- mkpart primary ext4 ${efi_end} 100%
 	        last_partition=$(last_part)
                 mkfs.ext4 /dev/${DISK}${p}${last_partition}
@@ -167,11 +167,11 @@ fi
 
 if [[ "$dualboot" == "yes" ]]; then
 	echo " --- you selected dualboot --- "
-	#dualboot()
+	dualboot()
 elif [[ "$dualboot" == "no" ]]; then
 	echo " --- so we will erase all disk --- \n if you dont want erase disk write \"no\" --- \n --- " erase
 	[[ "$erase" == "no" ]] && exit 1
-	#clear_disk()
+	clear_disk()
 else
 	echo " --- you writed wrong --- \n --- example input \"yes\" or \"no\" "
 fi

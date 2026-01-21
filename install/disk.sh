@@ -50,7 +50,7 @@ function clear_disk() {
         [[ "$DISK" == nvme* ]] && p="p"
 
         parted /dev/$DISK -- mkpart ESP fat32 ${efi_start} ${efi_end}
-        efi_num=$(( $(lsblk | grep $DISK | wc -l) - 1) ))
+        efi_num=$(( $(lsblk | grep $DISK | wc -l) - 1 ))
 	parted -- set ${efi_num} boot on
         mkfs.fat -F32 /dev/${DISK}${p}${efi_num}
 
@@ -129,7 +129,7 @@ function dualboot() {
 		mkdir -p /mnt/boot
 		mount /dev/${DISK}${p}${efi_num} /mnt/boot
 
-        elif [[ "${swap}"' -eq 0 ]]; then
+        elif [[ "${swap}" -eq 0 ]]; then
                 parted /dev/$DISK -- mkpart primary ext4 ${efi_end} 100%
 		mkfs.ext4 /dev/${DISK}${p}${last_partition}
 		mount /dev/${DISK}${p}${last_partition} /mnt
@@ -140,18 +140,6 @@ function dualboot() {
 
 
 }
-
-lsblk -f
-read -p " --- what disk you will use? (1/2/3...) --- \n --- " disk_choise
-DISK=$(lsblk -dno NAME | awk -v n="$disk_choise" 'NR==n')
-echo " --- you selected $DISK --- "
-
-(( efi_partition_size_raw = free_disksize + 1 ))
-
-parted_start=${free_disksize}GiB
-echo " --- parted_start - ${parted_start}"
-
-echo "$efi_size_echo"
 read -p " --- do you wanna dual boot with windows? yes/no (handwrite) --- \n --- " dualboot
 read -p " -- how mush swap you want 0-20 (in GiB) --- \n --- write only number --- \n --- if you dont want swap, then press 0 \n --- " swap
 echo "$free_disksize_raw"
@@ -167,11 +155,11 @@ fi
 
 if [[ "$dualboot" == "yes" ]]; then
 	echo " --- you selected dualboot --- "
-	dualboot()
+	dualboot
 elif [[ "$dualboot" == "no" ]]; then
-	echo " --- so we will erase all disk --- \n if you dont want erase disk write \"no\" --- \n --- " erase
+	read -p " --- so we will erase all disk --- \n if you dont want erase disk write \"no\" --- \n --- " erase
 	[[ "$erase" == "no" ]] && exit 1
-	clear_disk()
+	clear_disk
 else
 	echo " --- you writed wrong --- \n --- example input \"yes\" or \"no\" "
 fi

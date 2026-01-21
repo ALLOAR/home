@@ -49,7 +49,7 @@ function clear_disk() {
 
         [[ "$DISK" == nvme* ]] && p="p"
 
-        parted /dev/$DISK -- mkpart ESP fat32 ${efi_start} ${efi_end}
+        parted /dev/$DISK -- mkpart primary fat32 ${efi_start} ${efi_end}
         efi_num=$(( $(lsblk | grep $DISK | wc -l) - 1 ))
 	parted -- set ${efi_num} boot on
         mkfs.fat -F32 /dev/${DISK}${p}${efi_num}
@@ -112,7 +112,7 @@ function dualboot() {
         	parted /dev/$DISK -- set 1 boot on
         else
                echo " --- we must create new boot partition --- "
-		parted /dev/$DISK -- mkpart ESP fat32 ${efi_start} ${efi_end}
+		parted /dev/$DISK -- mkpart primary fat32 ${efi_start} ${efi_end}
 		efi_num=$(( $(lsblk | grep $DISK | wc -l) - 1 ))
 		parted -- set ${efi_num} boot on
 		mkfs.fat -F32 /dev/${DISK}${p}${efi_num}

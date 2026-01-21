@@ -1,5 +1,10 @@
 #/usr/env/bin bash
 set -e
+lsblk -f
+read -p " --- what disk you will use? (1/2/3...) --- \n --- " disk_choise
+DISK=$(lsblk -dno NAME | awk -v n="$disk_choise" 'NR==n')
+echo " --- you selected $DISK ---
+
 free_disksize_raw=$(parted /dev/$DISK unit GiB print free | grep "Free Space" | tail -n1 | awk '{print $3}')
 free_disksize=${free_disksize_raw%GiB}
 

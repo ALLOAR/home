@@ -8,8 +8,8 @@ qemu-system-x86_64 \
   -drive if=pflash,format=raw,readonly=on,file=./my_code.fd \
   -drive if=pflash,format=raw,file=./my_vars.fd \
   -boot order=c \
-  -drive file=../disk/nix.qcow2,format=qcow2 \
-  -cdrom ../iso/nix.iso \
+  -drive file=./nix.qcow2,format=qcow2 \
+  -cdrom ./nix.iso \
   -vga virtio \
   -device virtio-gpu-pci
   -display gtk,gl=on

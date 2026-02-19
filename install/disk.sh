@@ -64,10 +64,13 @@ function disk_space() {
 }
 function solo_boot() {
 	vfat
-	disk_end=$(parted -m /dev/"${DISK}" print | awk 'END {print}' | awk -F: '{print $3}')
+	disk_end_start=$(parted -m /dev/"${DISK}" print | awk 'END {print}' | awk -F: '{print $3}')
 	if [[ "${vfat_choise}" == "yes" ]]; then
-		parted /dev/"${DISK}" mkpart "${disk_end}" 100%
-		mkfs.
+		parted /dev/"${DISK}" mkpart "${disk_end_start}" 100%
+		disk_end_end=$(parted -m /dev/"${DISK}" print | awk 'END {print}' | awk -F: '{print $3}')
+		mkfs.ext4 /dev/"${DISK}" 
+# Необходимо решить проблему возможности алокации разделов, когда свободное место окружено двумя другими разделами, или же свободных мест несколько
+
  
 }
 

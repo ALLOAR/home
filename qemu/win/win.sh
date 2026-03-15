@@ -6,6 +6,6 @@ qemu-system-x86_64 \
   -m 4096 \
   -machine q35 \
   -boot order=c \
-  -drive file=../disk/win.qcow2,format=qcow2 \
-  -cdrom ../iso/Windows_10.iso* \
-
+  -drive file=./disk.qcow2,format=qcow2 \
+  -cdrom ./win_pl_10.iso* \
+  -usb -device usb-host,vendorid=0x1d6b,productid=0x0003

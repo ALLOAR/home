@@ -22,8 +22,8 @@ echo " --- you selected "${DISK}" --- "
 # Нуждаеться в доработке
 function free_disksize() {
 
-  
-  free_disksize_raw=$(parted -m /dev/$DISK unit GiB print free | awk -F: '$5=="free;" && $4!="0.00GiB" {print $4}';)
+    
+  free_disksize_raw=$(parted -m /dev/$DISK unit GiB print free | awk -F: '$5=="free;" && $4!="0.00GiB" {print $4}')
   free_disksize=${free_disksize_raw%GiB}
 }
 

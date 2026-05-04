@@ -1,5 +1,5 @@
 #/usr/bin/env bash
-set -e
+set -ex
 
 # Функция выбора диска, отображает пользователю все диски и раздели после чего
 # После чего еще раз показывает только диски пронумерованые с помощью awk
@@ -11,9 +11,10 @@ p=""
 echo -e " --- \n --- \n"
 lsblk -dnf | awk '{print FNR, $1}'
 read -ep " --- what disk you will use? (1/2/3...) --- " disk_choise
-DISK=$(lsblk -dnf | awk -v n="${disk_choise}" 'NR==n')
+DISK=$(lsblk -dnf | awk -v n="${disk_choise}" 'NR==n {print $1}')
 echo " --- you selected "${DISK}" --- "
-[[ "${DISK}" == nvme0n1 ]] && p="p"
+[[ "${DISK}" == nvme0n1 ]] && p="p" || true
+
 }
 
 # Функция запоминаея количества свободного места на диске
@@ -21,7 +22,7 @@ echo " --- you selected "${DISK}" --- "
 # Формат - 100 (единици в GiB)
 # НЕ Нуждаеться в доработке - я посчитал что подобный функционал должен быть реализован в других функциях
 function free_disksize() {
-  free_disksize_raw=$(parted -m /dev/$DISK unit GiB print free | awk -F: '$5=="free;" && $4!="0.00GiB" {print $4}')
+  free_disksize_raw=$(parted -m /dev/$DISK unit GiB print free | awk -F: '$5=="free;" && $4!="0.00GiB" {print $4}') | xargs
   free_disksize=${free_disksize_raw%GiB}
 	if [[ "${free_disksize}" -lt "15" ]]; then
 		low_space
@@ -51,6 +52,7 @@ function delete_partition() {
 # Функция удаляет всю  информацию в диске по ср
 # едство пересоздания таблици разделов
 function erase_disk() {
+	wipefs --all /dev/"$DISK"
 	parted /dev/"${DISK}" mklabel gpt
 }
 
@@ -61,7 +63,7 @@ function erase_disk() {
 # свою систему на раздел другого диска (пусть это и не всегда хорошо, свои применения имеет)
 # НЕ Нуждаеться в доработке, все в целом то работает хорошо, vfat_end необходим для создания других разделов если диск пуст или сразу после vfat есть пустое место
 function vfat() { 
-	vfat=$(lsblk -n -o FSTYPE | grep vfat | awk '{print $1}' | awk '{print NR}')
+	vfat=$(lsblk -n -o FSTYPE | grep vfat | awk '{print $1}' | awk '{print NR}') | xargs
 	if [[ "${vfat}" -eq 1 ]]; then  
 		lsblk -f
 		read -p $' --- You have vfat partition, do you want install you OS on that (recomendet) --- \n  --- (handwritin) yes/no ---  ' vfat_choise
@@ -69,15 +71,15 @@ function vfat() {
 			vfat_partition="new"
 			return
 		else
-		vfat_partition=$(lsblk -n -l -o NAME,FSTYPE,TYPE | awk '$3=="part" && $2=="vfat" {print $1}') # - output like nvme0n1p1
+		vfat_partition=$(lsblk -n -l -o NAME,FSTYPE,TYPE | awk '$3=="part" && $2=="vfat" {print $1}') | xargs # - output like nvme0n1p1 
 		fi
 	fi
 	if [[ "${vfat}" -gt 1 ]]; then
-		lsblk -n -l -o NAME,FSTYPE,TYPE | awk '$3=="part" && $2=="vfat" {print ++n,$1,$2}'	
+		lsblk -n -l -o NAME,FSTYPE,TYPE | awk '$3=="part" && $2=="vfat" {print ++n,$1,$2}'	| xargs
 		read -p $' --- you have more than 1 vfat on which of them you want install OS 1/2/3... --- ' vfat_partition_choise
-		vfat_partition=$(lsblk -n -l -o NAME,FSTYPE,TYPE | awk '$3=="part" && $2=="vfat" {print ++n,$1,$2}' | awk '$1="${vfat_partition_choise}" {print $2}')
+		vfat_partition=$(lsblk -n -l -o NAME,FSTYPE,TYPE | awk '$3=="part" && $2=="vfat" {print ++n,$1,$2}' | awk '$1="${vfat_partition_choise}" {print $2}') | xargs
 	fi
-	vfat_end=$(parted -m /dev/"${vfat_partition}" print | awk -F: '$1=="1" {print $3}')
+	vfat_end=$(parted -m /dev/"${vfat_partition}" print | awk -F: '$1=="1" {print $3}') | xargs
 }
 
 # Функция проверят достаточно ли места на диске
@@ -97,15 +99,18 @@ function low_space() {
 }
 
 function clear_install() {
-  
+
+  start_disk="$last_sector_raw"
+  end_disk="100%"
+  echo $start_disk $end_disk 
   echo "[1/5] Разметка /dev/$DISK..."
   # Создание таблицы разделов GPT
-  parted /dev/$DISK -- mklabel gpt
+  parted /dev/$DISK mklabel gpt
   # EFI-раздел (ESP)
-  parted /dev/$DISK -- mkpart ESP fat32 1MiB 512MiB
-  parted /dev/$DISK -- set 1 boot on
+  parted /dev/$DISK mkpart ESP fat32 "$start_disk" 1024MiB
+  parted /dev/$DISK set 1 boot on
   # Основной раздел ext4
-  parted /dev/$DISK -- mkpart primary ext4 512MiB 100%
+  parted /dev/$DISK mkpart primary ext4 1024MiB "$end_disk"
   echo "[2/5] Форматирование разделов..."
   # Форматирование EFI
   mkfs.fat -F32 -n boot /dev/${DISK}${p}1
@@ -113,34 +118,50 @@ function clear_install() {
   mkfs.ext4 -L nixos /dev/${DISK}${p}2
 
   echo "[3.5/5] Монтирование разделов..."
-  mount ${DISK}${p}2 /mnt
+  mount /dev/${DISK}${p}$(( first_partition + 1 )) /mnt
   mkdir -p /mnt/boot
-  mount ${DISK}${p}1 /mnt/boot
+  mount /dev/${DISK}${p}"$first_partition" /mnt/boot
+}
 
+function define_disk_border() {
+	first_partition=$(( $(lsblk -o NAME | grep sda | wc -l) - 1 ))
+
+	last_sector_raw=$(parted -m /dev/"$DISK" unit MiB print free | tail -n 1 | awk -F: '{print $3}')
+	echo $last_sector_raw
+	last_sector=${last_sector_raw%MiB}
+
+	read -p " --- How mush spcae you want for you system? --- \n --- (write like 20GiB or 40000MiB) --- " end_disk
 
 }
+
+
+
 # Черновой вариант функции для boot на чистом диске 
 # Нуждается в доработке
 function solo_boot() {
 	select_disk
 	free_disksize
 	if_disk_clear
-
+	echo "starting installation"
 	if [[ ${disk_clear} = "0" ]]; then
 		clear_install
 	else
 		read -p $" --- you disk have some partitions, you wanna install near other partitions? --- \n --- yes/no (handwrite) --- " near_install
+
 		if [[ "${near_install}" == "yes" ]]; then
 			# Here i will install system just on free space
+			define_disk_border
+			clear_install
+
+			
 		else
 			echo " --- so me should remove some partitions or entire disk ---"
 			read -p $" --- remove partition - 1, erase disk - 2 --- " decidion
-			if
+		fi
 	fi
-
 }
 
-
+solo_boot
 
 
 

@@ -14,6 +14,7 @@ read -ep " --- what disk you will use? (1/2/3...) --- " disk_choise
 DISK=$(lsblk -dnf | awk -v n="${disk_choise}" 'NR==n {print $1}')
 echo " --- you selected "${DISK}" --- "
 [[ "${DISK}" == nvme0n1 ]] && p="p" || true
+[[ "${DISK}" == loop0 ]] && p="p" || true
 
 }
 
@@ -22,7 +23,7 @@ echo " --- you selected "${DISK}" --- "
 # Формат - 100 (единици в GiB)
 # НЕ Нуждаеться в доработке - я посчитал что подобный функционал должен быть реализован в других функциях
 function free_disksize() {
-  free_disksize_raw=$(parted -m /dev/$DISK unit GiB print free | awk -F: '$5=="free;" && $4!="0.00GiB" {print $4}') | xargs
+  free_disksize_raw=$(parted -m /dev/$DISK unit GiB print free | awk -F: '$5=="free;" && $4!="0.00GiB" {print $4}')
   free_disksize=${free_disksize_raw%GiB}
 	if [[ "${free_disksize}" -lt "15" ]]; then
 		low_space
@@ -100,7 +101,7 @@ function low_space() {
 
 function clear_install() {
 
-  start_disk="$last_sector_raw"
+  start_disk=$last_sector_raw
   end_disk="100%"
   echo $start_disk $end_disk 
   echo "[1/5] Разметка /dev/$DISK..."
@@ -144,6 +145,7 @@ function solo_boot() {
 	if_disk_clear
 	echo "starting installation"
 	if [[ ${disk_clear} = "0" ]]; then
+		last_sector_raw="1MiB"
 		clear_install
 	else
 		read -p $" --- you disk have some partitions, you wanna install near other partitions? --- \n --- yes/no (handwrite) --- " near_install
